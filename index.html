@@ -1,0 +1,2132 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="theme-navy">
+<head>
+  <meta charset="UTF-8">
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=ai-legible&utm_source=comment&utm_medium=referral&utm_id=a9a347ee-f083-4ddb-99dd-963a495deaf6
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+<meta name="hosting-provider" content="Netlify">
+<meta name="netlify-deploy" content="https://netlify.new/?utm_campaign=ai-legible&amp;utm_source=meta&amp;utm_medium=referral&amp;utm_id=a9a347ee-f083-4ddb-99dd-963a495deaf6">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Futebol Studio - Master Suite All-In-One</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+
+
+  <!-- Configurações PWA Mobile -->
+  <meta name="theme-color" content="#070d18">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="FS Master">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            appGreen: '#10b981',
+            appGreenGlow: '#00f59b',
+            appRed: '#ef4444',
+            appYellow: '#f59e0b',
+            appBlue: '#38bdf8',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- FontAwesome & Google Fonts (Plus Jakarta Sans) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    /* ================= 🎨 5 TEMAS DINÂMICOS ================= */
+    .theme-navy {
+      --bg-color: #070d18;
+      --card-bg: #0e1628;
+      --card-border: #1a263e;
+      --text-muted: #8194b0;
+      --accent-main: #38bdf8;
+    }
+    .theme-cyber {
+      --bg-color: #030509;
+      --card-bg: #090f1e;
+      --card-border: #18243c;
+      --text-muted: #64748b;
+      --accent-main: #00f0ff;
+    }
+    .theme-gold {
+      --bg-color: #050505;
+      --card-bg: #120e08;
+      --card-border: #382710;
+      --text-muted: #a89478;
+      --accent-main: #f59e0b;
+    }
+    .theme-stealth {
+      --bg-color: #000000;
+      --card-bg: #0f0f12;
+      --card-border: #222227;
+      --text-muted: #71717a;
+      --accent-main: #a1a1aa;
+    }
+    .theme-emerald {
+      --bg-color: #020c08;
+      --card-bg: #071912;
+      --card-border: #103325;
+      --text-muted: #5c8c79;
+      --accent-main: #10b981;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: #f1f5f9;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      transition: background-color 0.3s ease;
+    }
+    .app-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      transition: all 0.3s ease;
+    }
+    .text-green-num {
+      color: #10b981 !important;
+      text-shadow: 0 0 20px rgba(16, 185, 129, 0.25);
+    }
+    .active-nav-pill {
+      background: var(--card-border) !important;
+      color: var(--accent-main) !important;
+      border-bottom: 2px solid var(--accent-main);
+    }
+    .custom-scroll::-webkit-scrollbar { height: 4px; }
+    .custom-scroll::-webkit-scrollbar-track { background: var(--bg-color); }
+    .custom-scroll::-webkit-scrollbar-thumb { background: var(--card-border); border-radius: 4px; }
+  </style>
+</head>
+<body class="pb-28 antialiased selection:bg-appGreen selection:text-black">
+
+  <!-- Header Superior (Cabeçalho em Azul Dark) -->
+  <header class="border-b px-4 py-3 sticky top-0 z-50 flex items-center justify-between" style="background: var(--bg-color); border-color: var(--card-border);">
+    <div class="flex items-center space-x-2.5">
+      <!-- Escudo Logo em Azul Dark -->
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-900 via-blue-700 to-sky-500 p-0.5 shadow-md shadow-blue-950/40">
+        <div class="w-full h-full bg-[#0a1120] rounded-[10px] flex items-center justify-center">
+          <i class="fa-solid fa-shield-halved text-sky-400 text-sm"></i>
+        </div>
+      </div>
+      <div>
+        <div class="flex items-center space-x-1.5">
+          <!-- Título em Tom Único Azul Dark / Safira -->
+          <h1 class="font-extrabold text-sm tracking-wide text-sky-400">
+            FUTEBOL STUDIO
+          </h1>
+          <span class="bg-blue-950 text-sky-300 border border-sky-500/40 font-black text-[9px] px-1.5 py-0.5 rounded-md tracking-wider">
+            PRO VIP
+          </span>
+        </div>
+        <!-- Subtítulo em Azul Dark -->
+        <p class="text-[10px] font-medium flex items-center space-x-1 text-blue-400/80">
+          <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+          <span>Terminal de Gestão Inteligente</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Controles Rápidos do Topo -->
+    <div class="flex items-center space-x-1.5">
+      <button onclick="toggleVoz()" id="btnVoz" title="Voz Operacional" class="w-8 h-8 rounded-xl app-card text-sky-400 flex items-center justify-center hover:text-white transition active:scale-95 text-xs">
+        <i class="fa-solid fa-volume-high"></i>
+      </button>
+
+      <button onclick="abrirModalTemas()" title="Trocar Tema (5 Opções)" class="w-8 h-8 rounded-xl app-card text-sky-400 flex items-center justify-center hover:text-white transition active:scale-95 text-xs">
+        <i class="fa-solid fa-palette"></i>
+      </button>
+
+      <button onclick="gerarCardVip()" title="Comprovante VIP WhatsApp" class="w-8 h-8 rounded-xl app-card text-sky-400 flex items-center justify-center hover:text-white transition active:scale-95 text-xs">
+        <i class="fa-solid fa-share-nodes"></i>
+      </button>
+
+      <button onclick="abrirConfigGeral()" title="Configurações" class="w-8 h-8 rounded-xl app-card flex items-center justify-center hover:text-white transition active:scale-95 text-xs text-sky-400">
+        <i class="fa-solid fa-sliders"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Navegação de Abas -->
+  <nav class="border-b sticky top-[57px] z-30 px-2 py-1.5 flex justify-around text-xs font-bold overflow-x-auto custom-scroll" style="background: var(--bg-color); border-color: var(--card-border); color: var(--text-muted);">
+    <button onclick="mudarAba('painel')" id="nav-painel" class="py-2 px-3 rounded-xl flex items-center space-x-1 transition active-nav-pill flex-shrink-0">
+      <i class="fa-solid fa-gauge text-xs"></i>
+      <span>Painel</span>
+    </button>
+    <button onclick="mudarAba('metas30')" id="nav-metas30" class="py-2 px-3 rounded-xl flex items-center space-x-1 transition flex-shrink-0">
+      <i class="fa-solid fa-bullseye text-xs"></i>
+      <span>Metas 30D</span>
+    </button>
+    <button onclick="mudarAba('metricas')" id="nav-metricas" class="py-2 px-3 rounded-xl flex items-center space-x-1 transition flex-shrink-0">
+      <i class="fa-solid fa-chart-pie text-xs"></i>
+      <span>Métricas</span>
+    </button>
+    <button onclick="mudarAba('calendario')" id="nav-calendario" class="py-2 px-3 rounded-xl flex items-center space-x-1 transition flex-shrink-0">
+      <i class="fa-solid fa-calendar-check text-xs"></i>
+      <span>Calendário</span>
+    </button>
+    <button onclick="mudarAba('tatico')" id="nav-tatico" class="py-2 px-3 rounded-xl flex items-center space-x-1 transition flex-shrink-0">
+      <i class="fa-solid fa-calculator text-xs"></i>
+      <span>Tático</span>
+    </button>
+    <button onclick="mudarAba('historico')" id="nav-historico" class="py-2 px-3 rounded-xl flex items-center space-x-1 transition flex-shrink-0">
+      <i class="fa-solid fa-clock-rotate-left text-xs"></i>
+      <span>Histórico</span>
+    </button>
+    <button onclick="mudarAba('aovivo')" id="nav-aovivo" class="py-2 px-3 rounded-xl flex items-center space-x-1 transition flex-shrink-0">
+      <i class="fa-solid fa-tower-broadcast text-xs"></i>
+      <span>Ao Vivo</span>
+    </button>
+  </nav>
+
+  <main class="max-w-md mx-auto px-4 pt-3 space-y-3.5">
+
+    <!-- ========================================================================= -->
+    <!-- ⚡ ABA 1: PAINEL OPERACIONAL COM RADAR & NÚMEROS VERDES                   -->
+    <!-- ========================================================================= -->
+    <section id="aba-painel" class="space-y-3.5">
+
+      <!-- 🤖 RADAR TÁTICO DE PROBABILIDADES -->
+      <div class="app-card p-3.5 space-y-2 relative overflow-hidden" style="border-color: rgba(16, 185, 129, 0.4);">
+        <div class="flex justify-between items-center">
+          <div class="flex items-center space-x-1.5 text-appGreen font-bold text-[10px] uppercase tracking-wider">
+            <i class="fa-solid fa-microchip animate-pulse"></i>
+            <span>Radar de Probabilidade ao Vivo</span>
+          </div>
+          <span class="text-[9px] px-2 py-0.5 rounded-full bg-emerald-950/80 text-appGreen font-bold border border-appGreen/30" id="radarForcaDisplay">
+            STATUS: ATIVO
+          </span>
+        </div>
+
+        <div class="p-2.5 rounded-xl border flex items-center justify-between" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+          <div>
+            <span class="text-[9px] block uppercase font-bold" style="color: var(--text-muted);">Sugestão de Entrada</span>
+            <p class="text-sm font-extrabold text-white" id="radarSinalDisplay">Aguardando mais saídas...</p>
+          </div>
+          <div class="text-right">
+            <span class="text-[9px] block uppercase font-bold" style="color: var(--text-muted);">Probabilidade</span>
+            <p class="text-sm font-black text-green-num" id="radarProbDisplay">--%</p>
+          </div>
+        </div>
+        <p class="text-[10px] leading-tight" id="radarJustificativaDisplay" style="color: var(--text-muted);">
+          O radar analisa o fluxo das últimas rodadas para calcular a tendência estatística.
+        </p>
+      </div>
+
+      <!-- 🧠 TERMÔMETRO EMOCIONAL -->
+      <div class="app-card p-3 space-y-2">
+        <div class="flex justify-between items-center text-xs">
+          <span class="text-[10px] uppercase font-bold" style="color: var(--text-muted);">Estado Psicológico</span>
+          <span class="text-appYellow text-[10px] font-bold" id="humorSelecionadoDisplay">🎯 Focado</span>
+        </div>
+        <div class="grid grid-cols-4 gap-1.5 text-[10px]">
+          <button onclick="selecionarHumor('Focado')" id="btnHumorFocado" class="humor-btn p-2 rounded-xl border border-appGreen text-white font-bold transition active:scale-95 text-center" style="background: rgba(0,0,0,0.3);">
+            🎯 Focado
+          </button>
+          <button onclick="selecionarHumor('Confiante')" id="btnHumorConfiante" class="humor-btn p-2 rounded-xl border text-gray-300 font-bold transition active:scale-95 text-center" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            ⚡ Confiante
+          </button>
+          <button onclick="selecionarHumor('Ansioso')" id="btnHumorAnsioso" class="humor-btn p-2 rounded-xl border text-gray-300 font-bold transition active:scale-95 text-center" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            ⚠️ Ansioso
+          </button>
+          <button onclick="selecionarHumor('Cansado')" id="btnHumorCansado" class="humor-btn p-2 rounded-xl border text-gray-300 font-bold transition active:scale-95 text-center" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            💤 Cansado
+          </button>
+        </div>
+      </div>
+
+      <!-- Trava Stop Win / Stop Loss -->
+      <div id="bannerTrava" class="hidden p-4 rounded-2xl border transition-all duration-300 shadow-2xl space-y-2">
+        <div class="flex items-center space-x-2">
+          <i id="iconeTrava" class="text-xl"></i>
+          <h3 id="tituloTrava" class="font-extrabold text-sm"></h3>
+        </div>
+        <p id="descTrava" class="text-xs opacity-90 font-medium"></p>
+        <div class="pt-1 flex justify-end">
+          <button onclick="destravarOperacoes()" class="px-3.5 py-1.5 bg-black/60 hover:bg-black/80 rounded-xl text-[11px] font-bold text-white border border-white/20 transition active:scale-95">
+            Destravar Operações
+          </button>
+        </div>
+      </div>
+
+      <!-- 💳 CARD BANCA ATUAL (COM NÚMEROS VERDES) -->
+      <div id="cardBancaAtual" class="app-card p-4 space-y-3">
+        <div class="flex justify-between items-center">
+          <div class="flex items-center space-x-1.5 text-xs font-bold tracking-wide" style="color: var(--text-muted);">
+            <i class="fa-solid fa-wallet text-appGreen"></i>
+            <span>BANCA ATUAL</span>
+          </div>
+          <span class="text-[11px] font-bold px-3 py-1 rounded-full border" id="dataAtualBadge" style="background: rgba(0,0,0,0.3); border-color: var(--card-border); color: #cbd5e1;">
+            Hoje
+          </span>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <!-- Grande Número em Verde -->
+          <h2 class="text-3xl font-extrabold text-green-num tracking-tight" id="bancaAtualDisplay">
+            R$ 1.000,00
+          </h2>
+          <div id="lucroBadge" class="flex items-center space-x-1 px-3 py-1 rounded-full text-xs font-bold bg-[#062c24] border border-appGreen/40 text-appGreen shadow">
+            <i class="fa-solid fa-arrow-trend-up text-[10px]"></i>
+            <span id="lucroTextoBadge">+R$ 0,00 (+0.0%)</span>
+          </div>
+        </div>
+
+        <p class="text-[11px] font-medium" style="color: var(--text-muted);">
+          Banca Inicial: <span id="bancaInicialSubDisplay" class="text-gray-300 font-bold">R$ 1.000,00</span>
+        </p>
+
+        <!-- Sub-barras Stop Win e Stop Loss -->
+        <div class="space-y-2.5 pt-1">
+          <!-- Meta Stop Win -->
+          <div class="p-2.5 rounded-xl border space-y-1.5" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <div class="flex justify-between text-xs font-bold">
+              <span class="flex items-center space-x-1.5 text-gray-300">
+                <i class="fa-solid fa-circle-check text-appGreen"></i>
+                <span>Meta Stop Win:</span>
+              </span>
+              <span class="text-green-num font-extrabold" id="stopWinDisplay">R$ 1.150,00 (+15%)</span>
+            </div>
+            <div class="w-full rounded-full h-2 overflow-hidden border" style="background: var(--card-bg); border-color: var(--card-border);">
+              <div id="metaProgressBar" class="bg-appGreen h-full w-0 transition-all duration-500"></div>
+            </div>
+          </div>
+
+          <!-- Limite Stop Loss -->
+          <div class="p-2.5 rounded-xl border space-y-1.5" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <div class="flex justify-between text-xs font-bold">
+              <span class="flex items-center space-x-1.5 text-gray-300">
+                <i class="fa-solid fa-ban text-appRed text-xs"></i>
+                <span>Limite Stop Loss:</span>
+              </span>
+              <span class="text-appRed font-extrabold" id="stopLossDisplay">R$ 900,00 (-10%)</span>
+            </div>
+            <div class="w-full rounded-full h-2 overflow-hidden border" style="background: var(--card-bg); border-color: var(--card-border);">
+              <div id="lossProgressBar" class="bg-appRed h-full w-0 transition-all duration-500"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 🎯 DIVISOR DE META EM 3 SESSÕES -->
+        <div class="pt-2 border-t space-y-1.5" style="border-color: var(--card-border);">
+          <span class="text-[9px] uppercase font-bold block" style="color: var(--text-muted);">Divisor de Meta (3 Sessões Diárias):</span>
+          <div class="grid grid-cols-3 gap-1.5 text-[10px] text-center">
+            <div id="sessaoManhaCard" class="p-2 rounded-xl border transition-all duration-300" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+              <span class="text-[8px] block" style="color: var(--text-muted);">🌅 Manhã</span>
+              <b class="text-green-num font-bold" id="sessaoManhaMeta">R$ 50,00</b>
+              <span class="text-[8px] font-bold block mt-0.5" id="sessaoManhaStatus" style="color: var(--text-muted);">Pendente</span>
+            </div>
+            <div id="sessaoTardeCard" class="p-2 rounded-xl border transition-all duration-300" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+              <span class="text-[8px] block" style="color: var(--text-muted);">☀️ Tarde</span>
+              <b class="text-green-num font-bold" id="sessaoTardeMeta">R$ 50,00</b>
+              <span class="text-[8px] font-bold block mt-0.5" id="sessaoTardeStatus" style="color: var(--text-muted);">Pendente</span>
+            </div>
+            <div id="sessaoNoiteCard" class="p-2 rounded-xl border transition-all duration-300" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+              <span class="text-[8px] block" style="color: var(--text-muted);">🌙 Noite</span>
+              <b class="text-green-num font-bold" id="sessaoNoiteMeta">R$ 50,00</b>
+              <span class="text-[8px] font-bold block mt-0.5" id="sessaoNoiteStatus" style="color: var(--text-muted);">Pendente</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 📊 GRADE DE 4 CARDS (COM NÚMEROS EM VERDE) -->
+      <div class="grid grid-cols-2 gap-3">
+        <!-- 1. WIN RATE -->
+        <div class="app-card p-3 flex items-center space-x-3">
+          <div class="w-9 h-9 rounded-xl bg-[#062c24] border border-appGreen/30 flex items-center justify-center text-appGreen font-bold text-xs flex-shrink-0">
+            %
+          </div>
+          <div>
+            <span class="text-[10px] uppercase font-bold block" style="color: var(--text-muted);">WIN RATE</span>
+            <span class="text-sm font-extrabold text-green-num" id="winRateDisplay">0.0%</span>
+          </div>
+        </div>
+
+        <!-- 2. GREENS -->
+        <div class="app-card p-3 flex items-center space-x-3">
+          <div class="w-9 h-9 rounded-xl bg-[#062c24] border border-appGreen/30 flex items-center justify-center text-appGreen text-xs flex-shrink-0">
+            <i class="fa-solid fa-check"></i>
+          </div>
+          <div>
+            <span class="text-[10px] uppercase font-bold block" style="color: var(--text-muted);">GREENS</span>
+            <span class="text-sm font-extrabold text-green-num" id="totalGreensDisplay">0 Greens</span>
+          </div>
+        </div>
+
+        <!-- 3. REDS -->
+        <div class="app-card p-3 flex items-center space-x-3">
+          <div class="w-9 h-9 rounded-xl bg-[#2a0f14] border border-appRed/30 flex items-center justify-center text-appRed text-xs flex-shrink-0">
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+          <div>
+            <span class="text-[10px] uppercase font-bold block" style="color: var(--text-muted);">REDS</span>
+            <span class="text-sm font-extrabold text-appRed" id="totalRedsDisplay">0 Reds</span>
+          </div>
+        </div>
+
+        <!-- 4. RODADAS -->
+        <div class="app-card p-3 flex items-center space-x-3">
+          <div class="w-9 h-9 rounded-xl bg-[#281c06] border border-appYellow/30 flex items-center justify-center text-appYellow text-xs flex-shrink-0">
+            <i class="fa-solid fa-bars"></i>
+          </div>
+          <div>
+            <span class="text-[10px] uppercase font-bold block" style="color: var(--text-muted);">RODADAS</span>
+            <span class="text-sm font-extrabold text-white" id="totalRodadasDisplay">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🔴 CATALOGADOR DE PADRÕES AO VIVO -->
+      <div class="app-card p-4 space-y-3">
+        <div class="flex items-center justify-between">
+          <h3 class="text-sm font-extrabold text-white">Catalogador de Padrões ao Vivo</h3>
+          <div class="flex items-center space-x-2">
+            <button onclick="desfazerUltimoPadrao()" class="px-2.5 py-1 rounded-lg border text-xs text-appYellow hover:text-white font-bold transition flex items-center space-x-1" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+              <i class="fa-solid fa-rotate-left text-[10px]"></i>
+              <span>Desfazer</span>
+            </button>
+            <button onclick="limparHistoricoPadroes()" class="px-2.5 py-1 rounded-lg border text-xs text-appRed hover:text-white font-bold transition flex items-center space-x-1" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+              <i class="fa-solid fa-trash-can text-[10px]"></i>
+              <span>Limpar</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex justify-between items-center text-[10px] font-bold uppercase tracking-tight" style="color: var(--text-muted);">
+          <span>HISTÓRICO EM TEMPO REAL (ÚLTIMAS 30)</span>
+          <span class="text-appGreen">Mais recente à direita ➔</span>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2">
+          <button onclick="adicionarPadrao('Casa')" class="py-2.5 rounded-xl bg-blue-950/40 border border-blue-500/40 text-blue-300 font-extrabold text-xs hover:bg-blue-900/60 transition active:scale-95 shadow">
+            + 🔵 CASA
+          </button>
+          <button onclick="adicionarPadrao('Empate')" class="py-2.5 rounded-xl bg-amber-950/40 border border-amber-500/40 text-amber-300 font-extrabold text-xs hover:bg-amber-900/60 transition active:scale-95 shadow">
+            + 🟡 EMPATE
+          </button>
+          <button onclick="adicionarPadrao('Fora')" class="py-2.5 rounded-xl bg-rose-950/40 border border-rose-500/40 text-rose-300 font-extrabold text-xs hover:bg-rose-900/60 transition active:scale-95 shadow">
+            + 🔴 FORA
+          </button>
+        </div>
+
+        <div class="border rounded-xl p-2.5 flex items-center space-x-1.5 overflow-x-auto custom-scroll" id="containerBolinhas" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+          <span class="text-[11px] py-1" style="color: var(--text-muted);">Nenhuma rodada catalogada.</span>
+        </div>
+
+        <div id="alertaPadrao" class="text-xs p-2.5 rounded-xl border border-appYellow/40 bg-amber-950/30 text-appYellow font-bold hidden flex items-center space-x-2">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span id="textoAlerta">Padrão detectado!</span>
+        </div>
+      </div>
+
+      <!-- 🧮 REGISTRO DE ENTRADAS -->
+      <div id="containerNovaEntrada" class="app-card p-4 space-y-3">
+        <div class="flex justify-between items-center">
+          <h3 class="text-sm font-extrabold text-white">Registro de Entrada</h3>
+          <span class="text-[10px] text-green-num font-bold" id="stakeRecomendadaDisplay">Auto: R$ 20,00</span>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2">
+          <button type="button" onclick="selecionarAposta('Casa')" id="btnApostaCasa" class="aposta-btn py-2 rounded-xl border text-xs font-bold text-blue-400 hover:border-blue-500 transition active:scale-95" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            🔵 CASA
+          </button>
+          <button type="button" onclick="selecionarAposta('Empate')" id="btnApostaEmpate" class="aposta-btn py-2 rounded-xl border text-xs font-bold text-amber-400 hover:border-amber-500 transition active:scale-95" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            🟡 EMPATE
+          </button>
+          <button type="button" onclick="selecionarAposta('Fora')" id="btnApostaFora" class="aposta-btn py-2 rounded-xl border text-xs font-bold text-rose-400 hover:border-rose-500 transition active:scale-95" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            🔴 FORA
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="text-[10px] font-semibold mb-1 block uppercase" style="color: var(--text-muted);">Valor Aposta (R$)</label>
+            <input type="number" id="inputValor" placeholder="Ex: 20" class="w-full border rounded-xl px-3 py-2 text-white text-xs focus:outline-none font-bold" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+          </div>
+          <div>
+            <label class="text-[10px] font-semibold mb-1 block uppercase" style="color: var(--text-muted);">Nível de Entrada</label>
+            <select id="selectGale" onchange="ajustarValorGale()" class="w-full border rounded-xl px-2 py-2 text-white text-xs focus:outline-none" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+              <option value="Base">Entrada Base (1x)</option>
+              <option value="Gale 1">Gale 1 (2x)</option>
+              <option value="Gale 2">Gale 2 (4x)</option>
+              <option value="Empate">Proteção Empate</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 pt-1">
+          <button onclick="registrarEntrada(true)" id="btnGreen" class="py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-green-500 text-white font-extrabold text-xs shadow-lg active:scale-95 transition flex items-center justify-center space-x-1.5">
+            <i class="fa-solid fa-check text-sm"></i>
+            <span>GREEN (VITÓRIA)</span>
+          </button>
+          <button onclick="registrarEntrada(false)" id="btnRed" class="py-3 rounded-xl bg-gradient-to-r from-rose-600 to-red-600 text-white font-extrabold text-xs shadow-lg active:scale-95 transition flex items-center justify-center space-x-1.5">
+            <i class="fa-solid fa-xmark text-sm"></i>
+            <span>RED (DERROTA)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Gráfico de Banca -->
+      <div class="app-card p-4 space-y-2">
+        <h3 class="text-xs font-bold text-white uppercase tracking-wider">Curva Patrimonial</h3>
+        <div class="w-full h-36">
+          <canvas id="graficoBanca"></canvas>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 🎯 ABA 2: METAS DE 30 DIAS                                                -->
+    <!-- ========================================================================= -->
+    <section id="aba-metas30" class="space-y-3.5 hidden">
+      <div class="app-card p-4 space-y-3 relative overflow-hidden">
+        <div class="flex justify-between items-center">
+          <h3 class="font-extrabold text-xs uppercase tracking-wider text-white">Plano de Metas 30 Dias</h3>
+          <button onclick="abrirConfigMetas30()" class="px-2.5 py-1 border rounded-lg text-[10px] text-appYellow font-bold transition" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <i class="fa-solid fa-gear mr-1"></i>Ajustar Metas
+          </button>
+        </div>
+
+        <div class="p-3 rounded-xl border space-y-2" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+          <div class="flex justify-between text-xs">
+            <span style="color: var(--text-muted);">Progresso do Desafio:</span>
+            <b class="text-green-num font-bold" id="progressoMetasBadge">0/30 Dias Batidos</b>
+          </div>
+          <div class="w-full rounded-full h-2.5 overflow-hidden border" style="background: var(--card-bg); border-color: var(--card-border);">
+            <div id="barraProgresso30D" class="bg-gradient-to-r from-amber-500 to-appGreen h-full w-0 transition-all duration-500"></div>
+          </div>
+          <div class="flex justify-between text-[10px] pt-1" style="color: var(--text-muted);">
+            <span>Banca Inicial: <b class="text-white" id="bancaInicial30DDisplay">R$ 1.000</b></span>
+            <span>Banca Alvo (Dia 30): <b class="text-green-num font-black" id="bancaFinalEstimadaDisplay">R$ 4.321</b></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="app-card p-4 space-y-3">
+        <div class="flex justify-between items-center border-b pb-2" style="border-color: var(--card-border);">
+          <h4 class="text-xs font-bold uppercase text-white tracking-wider">Cronograma de 30 Dias</h4>
+          <span class="text-[10px]" style="color: var(--text-muted);" id="tipoCalculoMetaBadge">Juros Compostos</span>
+        </div>
+        <div id="listaDias30" class="space-y-2 max-h-96 overflow-y-auto custom-scroll pr-1"></div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 📊 ABA 3: MÉTRICAS AVANÇADAS & ROI                                         -->
+    <!-- ========================================================================= -->
+    <section id="aba-metricas" class="space-y-3.5 hidden">
+      <div class="app-card p-4 space-y-3">
+        <div class="flex items-center space-x-2 text-appGreen">
+          <i class="fa-solid fa-chart-pie text-base"></i>
+          <h3 class="font-extrabold text-xs uppercase tracking-wider text-white">Métricas de ROI & Inteligência</h3>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2.5 text-xs">
+          <div class="p-3 rounded-xl border space-y-1" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <span class="text-[9px] uppercase font-bold" style="color: var(--text-muted);">ROI Real</span>
+            <p class="text-lg font-black text-green-num" id="roiPercentDisplay">0.0%</p>
+            <p class="text-[8px]" style="color: var(--text-muted);">Retorno sobre capital</p>
+          </div>
+          <div class="p-3 rounded-xl border space-y-1" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <span class="text-[9px] uppercase font-bold" style="color: var(--text-muted);">Recorde Greens</span>
+            <p class="text-lg font-black text-green-num" id="maxStreakDisplay">0 Seguidos</p>
+            <p class="text-[8px]" style="color: var(--text-muted);">Sequência máxima</p>
+          </div>
+          <div class="p-3 rounded-xl border space-y-1" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <span class="text-[9px] uppercase font-bold" style="color: var(--text-muted);">Volume Total</span>
+            <p class="text-sm font-black text-white" id="volumeTotalDisplay">R$ 0,00</p>
+            <p class="text-[8px]" style="color: var(--text-muted);">Capital movimentado</p>
+          </div>
+          <div class="p-3 rounded-xl border space-y-1" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <span class="text-[9px] uppercase font-bold" style="color: var(--text-muted);">Média por Entrada</span>
+            <p class="text-sm font-black text-green-num" id="lucroMedioDisplay">R$ 0,00</p>
+            <p class="text-[8px]" style="color: var(--text-muted);">Lucro médio / aposta</p>
+          </div>
+        </div>
+
+        <!-- Assertividade por Humor -->
+        <div class="p-3 rounded-xl border space-y-1.5 pt-2" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+          <span class="text-[10px] uppercase font-bold" style="color: var(--text-muted);">Assertividade por Estado Psicológico:</span>
+          <div class="grid grid-cols-2 gap-2 text-[10px]" id="statsHumorBox"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 📅 ABA 4: CALENDÁRIO COM NAVEGADOR DE MESES PASSADOS                       -->
+    <!-- ========================================================================= -->
+    <section id="aba-calendario" class="space-y-3.5 hidden">
+      <div class="app-card p-4 space-y-3">
+        <div class="flex items-center justify-between border-b pb-2.5" style="border-color: var(--card-border);">
+          <button onclick="navegarMes(-1)" class="p-2 rounded-xl border text-xs active:scale-95 transition" style="background: rgba(0,0,0,0.3); border-color: var(--card-border); color: var(--text-muted);">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <div class="text-center">
+            <h3 id="displayMesAno" class="font-extrabold text-xs uppercase text-white tracking-wider"></h3>
+            <span id="lucroMesSelecionado" class="text-[10px] font-semibold text-green-num">Total: R$ 0,00</span>
+          </div>
+          <button onclick="navegarMes(1)" class="p-2 rounded-xl border text-xs active:scale-95 transition" style="background: rgba(0,0,0,0.3); border-color: var(--card-border); color: var(--text-muted);">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-7 gap-1 text-center" id="gridCalendarioMes"></div>
+      </div>
+
+      <div class="app-card p-4 space-y-2.5">
+        <h4 class="text-xs font-bold uppercase text-white tracking-wider">Consolidado Mensal</h4>
+        <div class="grid grid-cols-3 gap-2 text-center text-xs">
+          <div class="p-2.5 rounded-xl border" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <span class="text-[9px] block uppercase" style="color: var(--text-muted);">Dias Green</span>
+            <b class="text-green-num text-sm" id="diasPositivosCount">0</b>
+          </div>
+          <div class="p-2.5 rounded-xl border" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <span class="text-[9px] block uppercase" style="color: var(--text-muted);">Dias Red</span>
+            <b class="text-appRed text-sm" id="diasNegativosCount">0</b>
+          </div>
+          <div class="p-2.5 rounded-xl border" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <span class="text-[9px] block uppercase" style="color: var(--text-muted);">Lucro Líquido</span>
+            <b id="resultadoMesTotal" class="text-green-num text-sm font-black">R$ 0,00</b>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 🧮 ABA 5: TÁTICO, DISPARIDADE & BACKUP TOTAL                              -->
+    <!-- ========================================================================= -->
+    <section id="aba-tatico" class="space-y-3.5 hidden">
+      <!-- Backup Total -->
+      <div class="app-card p-4 space-y-2.5">
+        <div class="flex justify-between items-center">
+          <h3 class="text-xs font-black uppercase tracking-wider text-white flex items-center space-x-1.5">
+            <i class="fa-solid fa-hard-drive text-appGreen"></i>
+            <span>Central de Backup Total</span>
+          </h3>
+          <span class="text-[9px] text-green-num font-bold">100% OFFLINE</span>
+        </div>
+        <p class="text-[11px]" style="color: var(--text-muted);">
+          Salve todos os seus dados e meses em um arquivo ou restaure seu progresso em qualquer celular.
+        </p>
+        <div class="flex space-x-2 pt-1">
+          <button onclick="exportarBackupCompleto()" class="flex-1 py-2.5 border text-appGreen font-bold rounded-xl text-xs transition active:scale-95" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <i class="fa-solid fa-download mr-1"></i>Baixar Backup (.json)
+          </button>
+          <label class="flex-1 py-2.5 border text-appYellow font-bold rounded-xl text-xs transition text-center cursor-pointer active:scale-95" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <i class="fa-solid fa-upload mr-1"></i>Restaurar
+            <input type="file" id="inputRestaurarBackup" onchange="restaurarBackupCompleto(event)" class="hidden" accept=".json">
+          </label>
+        </div>
+      </div>
+
+      <!-- Calculadora de Disparidade -->
+      <div class="app-card p-4 space-y-3">
+        <div class="flex items-center space-x-2 text-appYellow">
+          <i class="fa-solid fa-code-compare text-base"></i>
+          <h3 class="font-bold text-xs uppercase tracking-wider text-white">Calculadora de Disparidade</h3>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <div>
+            <label class="text-[10px] text-blue-400 font-semibold block mb-1">Carta Casa</label>
+            <select id="calcCartaCasa" onchange="calcularDisparidade()" class="w-full border rounded-xl p-2.5 text-white font-bold focus:outline-none" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+              <option value="14">Ás (A) - 14 pts</option>
+              <option value="13">Rei (K) - 13 pts</option>
+              <option value="12">Dama (Q) - 12 pts</option>
+              <option value="11">Valete (J) - 11 pts</option>
+              <option value="10">10 - 10 pts</option>
+              <option value="9">9 - 9 pts</option>
+              <option value="8">8 - 8 pts</option>
+              <option value="7">7 - 7 pts</option>
+              <option value="6">6 - 6 pts</option>
+              <option value="5">5 - 5 pts</option>
+              <option value="4">4 - 4 pts</option>
+              <option value="3">3 - 3 pts</option>
+              <option value="2">2 - 2 pts</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-[10px] text-rose-400 font-semibold block mb-1">Carta Fora</label>
+            <select id="calcCartaFora" onchange="calcularDisparidade()" class="w-full border rounded-xl p-2.5 text-white font-bold focus:outline-none" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+              <option value="14">Ás (A) - 14 pts</option>
+              <option value="13">Rei (K) - 13 pts</option>
+              <option value="12">Dama (Q) - 12 pts</option>
+              <option value="11">Valete (J) - 11 pts</option>
+              <option value="10">10 - 10 pts</option>
+              <option value="9">9 - 9 pts</option>
+              <option value="8">8 - 8 pts</option>
+              <option value="7">7 - 7 pts</option>
+              <option value="6">6 - 6 pts</option>
+              <option value="5">5 - 5 pts</option>
+              <option value="4" selected>4 - 4 pts</option>
+              <option value="3">3 - 3 pts</option>
+              <option value="2">2 - 2 pts</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="calcResultado" class="p-3 rounded-xl border text-xs space-y-1" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);"></div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 📜 ABA 6: HISTÓRICO GERAL                                                 -->
+    <!-- ========================================================================= -->
+    <section id="aba-historico" class="space-y-3.5 hidden">
+      <div class="app-card p-4 space-y-3">
+        <div class="flex items-center justify-between">
+          <h3 class="text-xs font-bold text-white uppercase tracking-wider">Histórico de Entradas</h3>
+          <button onclick="limparHistorico()" class="text-[10px] text-appRed transition">
+            Limpar Tudo
+          </button>
+        </div>
+        <div id="listaEntradas" class="space-y-2 max-h-80 overflow-y-auto pr-1"></div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 🎰 ABA 7: CENTRAL AO VIVO                                                 -->
+    <!-- ========================================================================= -->
+    <section id="aba-aovivo" class="space-y-3.5 hidden">
+
+      <!-- 🎰 CARD PRINCIPAL -->
+      <div class="app-card p-4 space-y-3">
+        <div class="flex items-center space-x-2">
+          <i class="fa-solid fa-tower-broadcast text-appBlue text-base"></i>
+          <h3 class="font-extrabold text-sm text-white">🎰 Central Ao Vivo</h3>
+        </div>
+        <p class="text-[11px]" style="color: var(--text-muted);">
+          Painel complementar para acompanhar e registrar suas sessões.
+        </p>
+
+        <div class="p-3 rounded-xl border space-y-2.5" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+          <div class="flex items-center space-x-1.5">
+            <span class="w-2 h-2 rounded-full bg-appRed animate-pulse"></span>
+            <span class="text-xs font-extrabold text-white">🔴 SUPERBET — JOGO AO VIVO</span>
+          </div>
+          <p class="text-[10px]" style="color: var(--text-muted);">
+            Acesse o jogo oficial em uma nova aba. O Futebol Studio Pro não incorpora, automatiza ou reproduz o jogo — apenas complementa sua gestão e seus registros.
+          </p>
+          <button onclick="abrirSuperbet()" class="w-full py-3 rounded-xl bg-gradient-to-r from-sky-600 to-appBlue text-white font-extrabold text-xs shadow-lg active:scale-95 transition flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <span>ABRIR SUPERBET</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 📊 LEITURA DA SESSÃO -->
+      <div class="app-card p-4 space-y-3">
+        <h3 class="text-sm font-extrabold text-white flex items-center space-x-1.5">
+          <span>📊 Leitura da Sessão</span>
+        </h3>
+        <div class="flex justify-between text-[11px] font-bold" style="color: var(--text-muted);">
+          <span>Total de rodadas:</span>
+          <span class="text-white" id="aoVivoTotalRodadas">0</span>
+        </div>
+        <div class="grid grid-cols-3 gap-2 text-center text-[10px]">
+          <div class="p-2.5 rounded-xl border bg-blue-950/30 border-blue-500/30">
+            <span class="block text-blue-300 font-bold">🔵 CASA</span>
+            <b class="block text-white text-sm" id="aoVivoCasaCount">0</b>
+            <span class="text-[9px]" style="color: var(--text-muted);" id="aoVivoCasaPct">0%</span>
+          </div>
+          <div class="p-2.5 rounded-xl border bg-rose-950/30 border-rose-500/30">
+            <span class="block text-rose-300 font-bold">🔴 FORA</span>
+            <b class="block text-white text-sm" id="aoVivoForaCount">0</b>
+            <span class="text-[9px]" style="color: var(--text-muted);" id="aoVivoForaPct">0%</span>
+          </div>
+          <div class="p-2.5 rounded-xl border bg-amber-950/30 border-amber-500/30">
+            <span class="block text-amber-300 font-bold">🟡 EMPATE</span>
+            <b class="block text-white text-sm" id="aoVivoEmpateCount">0</b>
+            <span class="text-[9px]" style="color: var(--text-muted);" id="aoVivoEmpatePct">0%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🔥 SEQUÊNCIA ATUAL -->
+      <div class="app-card p-4 space-y-2.5">
+        <h3 class="text-sm font-extrabold text-white">🔥 Sequência Atual</h3>
+        <div class="border rounded-xl p-2.5 flex items-center space-x-1.5 overflow-x-auto custom-scroll" id="aoVivoSequenciaBox" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+          <span class="text-[11px] py-1" style="color: var(--text-muted);">Aguardando registros...</span>
+        </div>
+        <div class="grid grid-cols-3 gap-2 text-center text-[10px] pt-1">
+          <div class="p-2 rounded-xl border" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <span class="block" style="color: var(--text-muted);">Último resultado</span>
+            <b class="text-white" id="aoVivoUltimoResultado">--</b>
+          </div>
+          <div class="p-2 rounded-xl border" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <span class="block" style="color: var(--text-muted);">Rodadas</span>
+            <b class="text-white" id="aoVivoRodadasRegistradas">0</b>
+          </div>
+          <div class="p-2 rounded-xl border" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <span class="block" style="color: var(--text-muted);">Maior sequência</span>
+            <b class="text-white" id="aoVivoMaiorSequencia">0</b>
+          </div>
+        </div>
+      </div>
+
+      <!-- ➕ REGISTRAR RODADA -->
+      <button onclick="abrirModalRegistrarRodada()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-green-500 text-white font-extrabold text-xs shadow-lg active:scale-95 transition flex items-center justify-center space-x-2">
+        <i class="fa-solid fa-plus"></i>
+        <span>REGISTRAR RODADA</span>
+      </button>
+
+      <!-- 💰 GESTÃO DE RISCO -->
+      <div class="app-card p-4 space-y-3">
+        <h3 class="text-sm font-extrabold text-white">💰 Gestão de Risco</h3>
+        <div class="grid grid-cols-2 gap-2.5 text-[10px]">
+          <div class="p-2.5 rounded-xl border space-y-0.5" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <span class="block uppercase font-bold" style="color: var(--text-muted);">Banca Atual</span>
+            <b class="text-green-num text-sm" id="aoVivoBancaAtual">R$ 0,00</b>
+          </div>
+          <div class="p-2.5 rounded-xl border space-y-0.5" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <span class="block uppercase font-bold" style="color: var(--text-muted);">🟢 Stop Win</span>
+            <b class="text-green-num text-sm" id="aoVivoStopWin">R$ 0,00</b>
+          </div>
+          <div class="p-2.5 rounded-xl border space-y-0.5" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <span class="block uppercase font-bold" style="color: var(--text-muted);">🔴 Stop Loss</span>
+            <b class="text-appRed text-sm" id="aoVivoStopLoss">R$ 0,00</b>
+          </div>
+          <div class="p-2.5 rounded-xl border space-y-0.5" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <span class="block uppercase font-bold" style="color: var(--text-muted);">Status</span>
+            <b class="text-xs" id="aoVivoStatusSessao">🟢 Sessão ativa</b>
+          </div>
+        </div>
+        <p class="text-[10px]" style="color: var(--text-muted);" id="aoVivoStatusDesc">Operações liberadas para hoje.</p>
+      </div>
+
+      <!-- 🎯 ESTADO PSICOLÓGICO -->
+      <div class="app-card p-4 space-y-2.5">
+        <div class="flex justify-between items-center">
+          <h3 class="text-sm font-extrabold text-white">Estado Psicológico</h3>
+          <span class="text-appYellow text-[10px] font-bold" id="aoVivoHumorDisplay">🎯 Focado</span>
+        </div>
+        <div class="grid grid-cols-4 gap-1.5 text-[10px]">
+          <button onclick="selecionarHumor('Focado')" id="btnHumorAoVivoFocado" class="humor-btn-aovivo p-2 rounded-xl border border-appGreen text-white font-bold transition active:scale-95 text-center" style="background: rgba(0,0,0,0.3);">
+            🎯 Focado
+          </button>
+          <button onclick="selecionarHumor('Confiante')" id="btnHumorAoVivoConfiante" class="humor-btn-aovivo p-2 rounded-xl border text-gray-300 font-bold transition active:scale-95 text-center" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            ⚡ Confiante
+          </button>
+          <button onclick="selecionarHumor('Ansioso')" id="btnHumorAoVivoAnsioso" class="humor-btn-aovivo p-2 rounded-xl border text-gray-300 font-bold transition active:scale-95 text-center" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            ⚠️ Ansioso
+          </button>
+          <button onclick="selecionarHumor('Cansado')" id="btnHumorAoVivoCansado" class="humor-btn-aovivo p-2 rounded-xl border text-gray-300 font-bold transition active:scale-95 text-center" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            💤 Cansado
+          </button>
+        </div>
+      </div>
+
+      <!-- ⚡ ATALHOS -->
+      <div class="app-card p-4 space-y-2.5">
+        <h3 class="text-sm font-extrabold text-white">Atalhos</h3>
+        <div class="grid grid-cols-2 gap-2.5">
+          <button onclick="mudarAba('historico')" class="py-2.5 rounded-xl border text-xs font-bold text-white transition active:scale-95 flex items-center justify-center space-x-1.5" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <i class="fa-solid fa-clock-rotate-left text-appBlue"></i><span>📚 Histórico</span>
+          </button>
+          <button onclick="mudarAba('metricas')" class="py-2.5 rounded-xl border text-xs font-bold text-white transition active:scale-95 flex items-center justify-center space-x-1.5" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <i class="fa-solid fa-chart-pie text-appBlue"></i><span>📊 Análises</span>
+          </button>
+          <button onclick="mudarAba('metas30')" class="py-2.5 rounded-xl border text-xs font-bold text-white transition active:scale-95 flex items-center justify-center space-x-1.5" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <i class="fa-solid fa-bullseye text-appYellow"></i><span>🎯 Metas</span>
+          </button>
+          <button onclick="irParaBanca()" class="py-2.5 rounded-xl border text-xs font-bold text-white transition active:scale-95 flex items-center justify-center space-x-1.5" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <i class="fa-solid fa-wallet text-appGreen"></i><span>💰 Banca</span>
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ================= 🎨 MODAL SELETOR DE 5 TEMAS ================= -->
+  <div id="modalTemas" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="app-card w-full max-w-xs p-5 space-y-3.5 text-xs shadow-2xl">
+      <div class="flex justify-between items-center border-b pb-2" style="border-color: var(--card-border);">
+        <h3 class="font-extrabold text-white uppercase text-sm">Selecione o Tema (5 Opções)</h3>
+        <button onclick="fecharModalTemas()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-base"></i></button>
+      </div>
+
+      <div class="space-y-2 font-bold">
+        <!-- 1. Deep Navy VIP -->
+        <button onclick="aplicarTema('theme-navy')" class="w-full p-3 bg-[#070d18] hover:bg-[#0c1628] border border-blue-500/40 rounded-xl text-left flex items-center justify-between text-blue-300 transition">
+          <span>🔵 Deep Navy VIP (Padrão)</span>
+          <span class="w-3.5 h-3.5 rounded-full bg-blue-500"></span>
+        </button>
+
+        <!-- 2. Cyber Neon Matrix -->
+        <button onclick="aplicarTema('theme-cyber')" class="w-full p-3 bg-[#030509] hover:bg-[#080f1e] border border-cyan-500/40 rounded-xl text-left flex items-center justify-between text-cyan-300 transition">
+          <span>💎 Cyber Neon Matrix</span>
+          <span class="w-3.5 h-3.5 rounded-full bg-cyan-400"></span>
+        </button>
+
+        <!-- 3. Gold Champagne Lux -->
+        <button onclick="aplicarTema('theme-gold')" class="w-full p-3 bg-[#050505] hover:bg-[#120e08] border border-amber-500/40 rounded-xl text-left flex items-center justify-between text-amber-300 transition">
+          <span>👑 Gold Champagne Lux</span>
+          <span class="w-3.5 h-3.5 rounded-full bg-amber-400"></span>
+        </button>
+
+        <!-- 4. Obsidian Stealth Carbon -->
+        <button onclick="aplicarTema('theme-stealth')" class="w-full p-3 bg-[#000000] hover:bg-[#141414] border border-zinc-500/40 rounded-xl text-left flex items-center justify-between text-zinc-300 transition">
+          <span>🖤 Obsidian Stealth Carbon</span>
+          <span class="w-3.5 h-3.5 rounded-full bg-zinc-400"></span>
+        </button>
+
+        <!-- 5. Emerald Casino Royale -->
+        <button onclick="aplicarTema('theme-emerald')" class="w-full p-3 bg-[#020c08] hover:bg-[#071912] border border-emerald-500/40 rounded-xl text-left flex items-center justify-between text-emerald-300 transition">
+          <span>🌲 Emerald Casino Royale</span>
+          <span class="w-3.5 h-3.5 rounded-full bg-emerald-400"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL COMPROVANTE VIP ================= -->
+  <div id="modalCardVip" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="app-card w-full max-w-sm p-5 space-y-4 shadow-2xl">
+      <div class="flex justify-between items-center border-b pb-2" style="border-color: var(--card-border);">
+        <h3 class="font-black text-xs uppercase tracking-wider text-white flex items-center space-x-1.5">
+          <i class="fa-solid fa-medal text-appGreen"></i>
+          <span>Comprovante VIP de Performance</span>
+        </h3>
+        <button onclick="fecharCardVip()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="p-4 rounded-2xl border space-y-3 text-center" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+        <span class="text-[10px] uppercase font-bold block" style="color: var(--text-muted);" id="vipDataDisplay">Hoje</span>
+        <h4 class="text-2xl font-black text-green-num" id="vipLucroDisplay">+R$ 0,00</h4>
+        <div class="grid grid-cols-2 gap-2 text-xs pt-1 border-t" style="border-color: var(--card-border);">
+          <div class="p-2 rounded-xl border" style="background: var(--card-bg); border-color: var(--card-border);">
+            <span class="text-[9px] block" style="color: var(--text-muted);">Assertividade</span>
+            <b class="text-green-num font-bold" id="vipWinRateDisplay">0%</b>
+          </div>
+          <div class="p-2 rounded-xl border" style="background: var(--card-bg); border-color: var(--card-border);">
+            <span class="text-[9px] block" style="color: var(--text-muted);">Placar Diário</span>
+            <b class="text-white font-bold" id="vipPlacarDisplay">0G / 0R</b>
+          </div>
+        </div>
+      </div>
+
+      <button onclick="copiarComprovante()" class="w-full py-3 bg-gradient-to-r from-emerald-600 to-green-500 text-white font-black rounded-xl hover:brightness-110 transition active:scale-95 text-xs uppercase tracking-wider">
+        <i class="fa-brands fa-whatsapp mr-1.5 text-sm"></i>Copiar Relatório p/ WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= MODAL AJUSTES GERAIS ================= -->
+  <div id="modalConfigGeral" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="app-card w-full max-w-sm p-5 space-y-4 shadow-2xl text-xs">
+      <div class="flex justify-between items-center border-b pb-2.5" style="border-color: var(--card-border);">
+        <h3 class="font-extrabold text-white text-sm uppercase">Configuração da Banca</h3>
+        <button onclick="fecharConfigGeral()" class="text-gray-400 hover:text-white text-base"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="space-y-3">
+        <div>
+          <label class="block mb-1 uppercase font-bold" style="color: var(--text-muted);">Banca Inicial (R$)</label>
+          <input type="number" id="cfgBancaInicial" class="w-full border rounded-xl p-2.5 text-white font-bold focus:outline-none" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+        </div>
+        <div>
+          <label class="block mb-1 uppercase font-bold" style="color: var(--text-muted);">% Stake Recomendada</label>
+          <input type="number" id="cfgStakePercent" value="2" class="w-full border rounded-xl p-2.5 text-white font-bold focus:outline-none" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+        </div>
+        <div>
+          <label class="block mb-1 uppercase font-bold" style="color: var(--text-muted);">Meta Stop Win (R$)</label>
+          <input type="number" id="cfgStopWin" class="w-full border rounded-xl p-2.5 text-white font-bold focus:outline-none" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+        </div>
+        <div>
+          <label class="block mb-1 uppercase font-bold" style="color: var(--text-muted);">Limite Stop Loss (R$)</label>
+          <input type="number" id="cfgStopLoss" class="w-full border rounded-xl p-2.5 text-white font-bold focus:outline-none" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+        </div>
+      </div>
+      <div class="pt-2">
+        <button onclick="salvarConfigGeral()" class="w-full py-3 bg-gradient-to-r from-amber-600 to-appYellow text-black font-black rounded-xl hover:brightness-110 transition active:scale-95 uppercase tracking-wider">
+          Gravar Configurações
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL AJUSTES METAS 30 DIAS ================= -->
+  <div id="modalConfigMetas30" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="app-card w-full max-w-sm p-5 space-y-4 shadow-2xl text-xs">
+      <div class="flex justify-between items-center border-b pb-2.5" style="border-color: var(--card-border);">
+        <h3 class="font-extrabold text-white text-sm uppercase">Ajustar Desafio de 30 Dias</h3>
+        <button onclick="fecharConfigMetas30()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="space-y-3">
+        <div>
+          <label class="block mb-1 uppercase font-bold" style="color: var(--text-muted);">Tipo de Meta</label>
+          <select id="cfgTipoMeta30" onchange="toggleTipoMetaInputs()" class="w-full border rounded-xl p-2.5 text-white font-bold focus:outline-none" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <option value="porcentagem">Juros Compostos (% ao Dia)</option>
+            <option value="fixa">Meta Fixa em Reais (R$/Dia)</option>
+          </select>
+        </div>
+        <div id="boxPercentMeta">
+          <label class="block mb-1 uppercase font-bold" style="color: var(--text-muted);">% de Meta Diária</label>
+          <input type="number" id="cfgPercentMeta30" value="5" class="w-full border rounded-xl p-2.5 text-white font-bold focus:outline-none" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+        </div>
+        <div id="boxFixaMeta" class="hidden">
+          <label class="block mb-1 uppercase font-bold" style="color: var(--text-muted);">Valor Fixo da Meta Diária (R$)</label>
+          <input type="number" id="cfgValorFixoMeta30" value="50" class="w-full border rounded-xl p-2.5 text-white font-bold focus:outline-none" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+        </div>
+      </div>
+      <div class="pt-2">
+        <button onclick="salvarConfigMetas30()" class="w-full py-3 bg-gradient-to-r from-emerald-600 to-green-500 text-white font-black rounded-xl hover:brightness-110 transition active:scale-95 uppercase tracking-wider">
+          Recalcular 30 Dias
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL REGISTRAR RODADA (CENTRAL AO VIVO) ================= -->
+  <div id="modalRegistrarRodada" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="app-card w-full max-w-sm p-5 space-y-4 shadow-2xl text-xs">
+      <div class="flex justify-between items-center border-b pb-2.5" style="border-color: var(--card-border);">
+        <h3 class="font-extrabold text-white text-sm uppercase">➕ Registrar Rodada</h3>
+        <button onclick="fecharModalRegistrarRodada()" class="text-gray-400 hover:text-white text-base"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="space-y-3">
+        <div>
+          <label class="block mb-1.5 uppercase font-bold" style="color: var(--text-muted);">Resultado</label>
+          <div class="grid grid-cols-3 gap-2">
+            <button type="button" onclick="selecionarResultadoRodada('Casa')" id="btnResultadoCasa" class="resultado-rodada-btn py-2.5 rounded-xl border text-xs font-extrabold text-blue-300 transition active:scale-95 bg-blue-950/40 border-blue-500/40">
+              🔵 CASA
+            </button>
+            <button type="button" onclick="selecionarResultadoRodada('Fora')" id="btnResultadoFora" class="resultado-rodada-btn py-2.5 rounded-xl border text-xs font-extrabold text-rose-300 transition active:scale-95 bg-rose-950/40 border-rose-500/40">
+              🔴 FORA
+            </button>
+            <button type="button" onclick="selecionarResultadoRodada('Empate')" id="btnResultadoEmpate" class="resultado-rodada-btn py-2.5 rounded-xl border text-xs font-extrabold text-amber-300 transition active:scale-95 bg-amber-950/40 border-amber-500/40">
+              🟡 EMPATE
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <label class="block mb-1 uppercase font-bold" style="color: var(--text-muted);">Observação (opcional)</label>
+          <input type="text" id="inputObsRodada" placeholder="Ex: mesa cheia, padrão xadrez..." class="w-full border rounded-xl p-2.5 text-white font-medium focus:outline-none" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+        </div>
+
+        <div class="flex justify-between text-[10px] px-0.5" style="color: var(--text-muted);">
+          <span>Data e horário:</span>
+          <span class="font-bold text-white" id="dataHoraRodadaDisplay">--</span>
+        </div>
+      </div>
+
+      <div class="pt-1">
+        <button onclick="salvarRodadaAoVivo()" class="w-full py-3 bg-gradient-to-r from-emerald-600 to-green-500 text-white font-black rounded-xl hover:brightness-110 transition active:scale-95 uppercase tracking-wider">
+          Salvar Rodada
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TOAST DE CONFIRMAÇÃO ================= -->
+  <div id="toastConfirmacao" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] hidden px-4 py-2.5 rounded-xl border border-appGreen bg-emerald-950/95 text-appGreen font-bold text-xs shadow-2xl items-center space-x-2">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toastConfirmacaoTexto">Rodada registrada!</span>
+  </div>
+
+  <!-- JavaScript Unificado Completo -->
+  <script>
+    function mudarAba(aba) {
+      const abas = ['painel', 'metas30', 'metricas', 'calendario', 'tatico', 'historico', 'aovivo'];
+      abas.forEach(a => {
+        const el = document.getElementById(`aba-${a}`);
+        const nav = document.getElementById(`nav-${a}`);
+        if (el) el.classList.add('hidden');
+        if (nav) nav.classList.remove('active-nav-pill');
+      });
+
+      const elAtivo = document.getElementById(`aba-${aba}`);
+      const navAtivo = document.getElementById(`nav-${aba}`);
+      if (elAtivo) elAtivo.classList.remove('hidden');
+      if (navAtivo) navAtivo.classList.add('active-nav-pill');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Voz
+    let vozHabilitada = true;
+    function falar(texto) {
+      if (!vozHabilitada || !('speechSynthesis' in window)) return;
+      try {
+        window.speechSynthesis.cancel();
+        const utter = new SpeechSynthesisUtterance(texto);
+        utter.lang = 'pt-BR';
+        utter.rate = 1.1;
+        window.speechSynthesis.speak(utter);
+      } catch (e) {}
+    }
+
+    function toggleVoz() {
+      vozHabilitada = !vozHabilitada;
+      document.getElementById('btnVoz').innerHTML = vozHabilitada ? '<i class="fa-solid fa-volume-high text-appGreen"></i>' : '<i class="fa-solid fa-volume-xmark" style="color: var(--text-muted)"></i>';
+      salvarDados();
+    }
+
+    // Temas (5 Opções)
+    function abrirModalTemas() { document.getElementById('modalTemas').classList.remove('hidden'); }
+    function fecharModalTemas() { document.getElementById('modalTemas').classList.add('hidden'); }
+    function aplicarTema(tema) {
+      document.documentElement.className = tema;
+      localStorage.setItem('fs_tema_5opcoes', tema);
+      fecharModalTemas();
+    }
+
+    // Humor Psicológico
+    let humorAtual = 'Focado';
+    function selecionarHumor(humor) {
+      humorAtual = humor;
+      document.querySelectorAll('.humor-btn').forEach(b => b.classList.remove('border-appGreen'));
+      document.getElementById(`btnHumor${humor}`)?.classList.add('border-appGreen');
+      document.getElementById('humorSelecionadoDisplay').textContent = `${humor === 'Focado' ? '🎯' : (humor === 'Confiante' ? '⚡' : (humor === 'Ansioso' ? '⚠️' : '💤'))} ${humor}`;
+
+      // Sincroniza os botões e o indicador da Central Ao Vivo
+      document.querySelectorAll('.humor-btn-aovivo').forEach(b => b.classList.remove('border-appGreen'));
+      document.getElementById(`btnHumorAoVivo${humor}`)?.classList.add('border-appGreen');
+      const humorAoVivoDisplay = document.getElementById('aoVivoHumorDisplay');
+      if (humorAoVivoDisplay) {
+        humorAoVivoDisplay.textContent = `${humor === 'Focado' ? '🎯' : (humor === 'Confiante' ? '⚡' : (humor === 'Ansioso' ? '⚠️' : '💤'))} ${humor}`;
+      }
+
+      falar(`Humor registrado: ${humor}`);
+      atualizarUI();
+    }
+
+    // Gestão de Banca
+    let estado = {
+      bancaInicial: 1000,
+      stakePercent: 2,
+      stopWin: 150,
+      stopLoss: 100,
+      travaManualDesativada: false,
+      travaData: null,
+      metas30: { tipo: 'porcentagem', percentual: 5, valorFixo: 50 },
+      padroes: [],
+      entradas: [],
+      historicoDiario: {}
+    };
+
+    let apostaSelecionada = 'Casa';
+    let chartInstance = null;
+
+    function carregarDados() {
+      const db = localStorage.getItem('fs_all_in_one_v8_db');
+      if (db) estado = JSON.parse(db);
+      if (!estado.historicoDiario) estado.historicoDiario = {};
+      if (!estado.metas30) estado.metas30 = { tipo: 'porcentagem', percentual: 5, valorFixo: 50 };
+      if (typeof estado.travaData === 'undefined') estado.travaData = null;
+      if (typeof estado.travaManualDesativada === 'undefined') estado.travaManualDesativada = false;
+
+      const temaSalvo = localStorage.getItem('fs_tema_5opcoes') || 'theme-navy';
+      document.documentElement.className = temaSalvo;
+
+      document.getElementById('dataAtualBadge').textContent = new Date().toLocaleDateString('pt-BR', { weekday: 'short', day: '2-digit', month: 'short' });
+      selecionarAposta('Casa');
+      initChart();
+
+      // Garante que uma trava de um dia anterior nunca continue ativa hoje
+      verificarViradaDoDia();
+
+      atualizarUI();
+      renderizarMesCalendario();
+      renderizarMetas30Dias();
+      calcularDisparidade();
+
+      // Verifica a virada do dia automaticamente a cada 30 segundos
+      setInterval(verificarViradaDoDia, 30000);
+    }
+
+    function salvarDados() {
+      localStorage.setItem('fs_all_in_one_v8_db', JSON.stringify(estado));
+      atualizarUI();
+      renderizarMesCalendario();
+      renderizarMetas30Dias();
+    }
+
+    function selecionarAposta(tipo) {
+      apostaSelecionada = tipo;
+      document.querySelectorAll('.aposta-btn').forEach(b => b.classList.remove('ring-2', 'ring-appYellow'));
+      const btn = document.getElementById(`btnAposta${tipo}`);
+      if (btn) btn.classList.add('ring-2', 'ring-appYellow');
+    }
+
+    function adicionarPadrao(tipo, obs) {
+      const novoPadrao = { id: Date.now(), tipo: tipo };
+      if (obs) novoPadrao.obs = obs;
+      estado.padroes.push(novoPadrao);
+      if (estado.padroes.length > 30) estado.padroes.shift();
+      salvarDados();
+    }
+
+    function desfazerUltimoPadrao() {
+      if (estado.padroes.length > 0) {
+        estado.padroes.pop();
+        salvarDados();
+      }
+    }
+
+    function limparHistoricoPadroes() {
+      if (confirm('Deseja realmente limpar as saídas do catalogador?')) {
+        estado.padroes = [];
+        salvarDados();
+      }
+    }
+
+    // ========================================================================= //
+    // 🎰 CENTRAL AO VIVO — painel complementar (não altera lógica existente)     //
+    // ========================================================================= //
+
+    // Abre SOMENTE o site oficial da Superbet em uma nova aba
+    function abrirSuperbet() {
+      window.open('https://superbet.bet.br/', '_blank', 'noopener,noreferrer');
+    }
+
+    // Estatísticas de Casa/Fora/Empate com base nos padrões já catalogados pelo usuário
+    function calcularEstatisticasPadroes() {
+      const total = estado.padroes.length;
+      const casa = estado.padroes.filter(p => p.tipo === 'Casa').length;
+      const fora = estado.padroes.filter(p => p.tipo === 'Fora').length;
+      const empate = estado.padroes.filter(p => p.tipo === 'Empate').length;
+      const pct = (n) => total > 0 ? ((n / total) * 100).toFixed(0) : '0';
+      return { total, casa, fora, empate, casaPct: pct(casa), foraPct: pct(fora), empatePct: pct(empate) };
+    }
+
+    // Maior sequência de resultados iguais consecutivos já catalogados
+    function calcularMaiorSequenciaPadrao() {
+      let maior = 0, atual = 0, anterior = null;
+      estado.padroes.forEach(p => {
+        if (p.tipo === anterior) atual++;
+        else atual = 1;
+        if (atual > maior) maior = atual;
+        anterior = p.tipo;
+      });
+      return maior;
+    }
+
+    // Reflete o estado ATUAL dos Stops (sem alterar a lógica original deles)
+    function getStatusSessaoAoVivo() {
+      const lucroHoje = getLucroHoje();
+      if (!estado.travaManualDesativada) {
+        if (lucroHoje >= estado.stopWin && estado.stopWin > 0) {
+          return { texto: '🟢 STOP WIN ATINGIDO', desc: 'Meta diária concluída. Proteja seu resultado.' };
+        }
+        if (lucroHoje <= -estado.stopLoss && estado.stopLoss > 0) {
+          return { texto: '🔴 STOP LOSS ATINGIDO', desc: 'Limite diário atingido. Sessão encerrada.' };
+        }
+      }
+      return { texto: '🟢 Sessão ativa', desc: 'Operações liberadas para hoje.' };
+    }
+
+    // Atualiza todos os displays da Central Ao Vivo (chamada dentro de atualizarUI)
+    function atualizarCentralAoVivo() {
+      const stats = calcularEstatisticasPadroes();
+
+      const elTotal = document.getElementById('aoVivoTotalRodadas');
+      if (elTotal) elTotal.textContent = stats.total;
+
+      const setStat = (idCount, idPct, valor, pct) => {
+        const elC = document.getElementById(idCount);
+        const elP = document.getElementById(idPct);
+        if (elC) elC.textContent = valor;
+        if (elP) elP.textContent = `${pct}%`;
+      };
+      setStat('aoVivoCasaCount', 'aoVivoCasaPct', stats.casa, stats.casaPct);
+      setStat('aoVivoForaCount', 'aoVivoForaPct', stats.fora, stats.foraPct);
+      setStat('aoVivoEmpateCount', 'aoVivoEmpatePct', stats.empate, stats.empatePct);
+
+      // Sequência atual (últimas 10 exibidas, igual ao padrão do catalogador)
+      const seqBox = document.getElementById('aoVivoSequenciaBox');
+      if (seqBox) {
+        if (estado.padroes.length === 0) {
+          seqBox.innerHTML = `<span class="text-[11px] py-1" style="color: var(--text-muted);">Aguardando registros...</span>`;
+        } else {
+          seqBox.innerHTML = estado.padroes.slice(-10).map(p => {
+            const cor = p.tipo === 'Casa' ? 'bg-blue-600 text-white' : (p.tipo === 'Fora' ? 'bg-rose-600 text-white' : 'bg-amber-400 text-black font-black');
+            const letra = p.tipo === 'Casa' ? 'C' : (p.tipo === 'Fora' ? 'F' : 'E');
+            return `<div class="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center font-black text-[10px] ${cor} shadow">${letra}</div>`;
+          }).join('');
+        }
+      }
+
+      const ultimo = estado.padroes[estado.padroes.length - 1];
+      const elUltimo = document.getElementById('aoVivoUltimoResultado');
+      if (elUltimo) elUltimo.textContent = ultimo ? ultimo.tipo.toUpperCase() : '--';
+
+      const elRodadas = document.getElementById('aoVivoRodadasRegistradas');
+      if (elRodadas) elRodadas.textContent = stats.total;
+
+      const elMaiorSeq = document.getElementById('aoVivoMaiorSequencia');
+      if (elMaiorSeq) elMaiorSeq.textContent = calcularMaiorSequenciaPadrao();
+
+      // Gestão de risco — reaproveita os valores já renderizados no Painel (mesma banca, mesmos Stops)
+      const bancaTxt = document.getElementById('bancaAtualDisplay')?.textContent?.trim();
+      const stopWinTxt = document.getElementById('stopWinDisplay')?.textContent?.trim();
+      const stopLossTxt = document.getElementById('stopLossDisplay')?.textContent?.trim();
+      if (bancaTxt) document.getElementById('aoVivoBancaAtual').textContent = bancaTxt;
+      if (stopWinTxt) document.getElementById('aoVivoStopWin').textContent = stopWinTxt;
+      if (stopLossTxt) document.getElementById('aoVivoStopLoss').textContent = stopLossTxt;
+
+      const status = getStatusSessaoAoVivo();
+      const elStatus = document.getElementById('aoVivoStatusSessao');
+      const elStatusDesc = document.getElementById('aoVivoStatusDesc');
+      if (elStatus) elStatus.textContent = status.texto;
+      if (elStatusDesc) elStatusDesc.textContent = status.desc;
+
+      // Estado psicológico (usa a mesma variável já existente)
+      const elHumor = document.getElementById('aoVivoHumorDisplay');
+      if (elHumor) {
+        elHumor.textContent = `${humorAtual === 'Focado' ? '🎯' : (humorAtual === 'Confiante' ? '⚡' : (humorAtual === 'Ansioso' ? '⚠️' : '💤'))} ${humorAtual}`;
+      }
+    }
+
+    // Modal "Registrar Rodada"
+    let resultadoSelecionadoAoVivo = null;
+
+    function abrirModalRegistrarRodada() {
+      resultadoSelecionadoAoVivo = null;
+      document.querySelectorAll('.resultado-rodada-btn').forEach(b => b.classList.remove('ring-2', 'ring-white'));
+      document.getElementById('inputObsRodada').value = '';
+      document.getElementById('dataHoraRodadaDisplay').textContent = new Date().toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+      document.getElementById('modalRegistrarRodada').classList.remove('hidden');
+    }
+
+    function fecharModalRegistrarRodada() {
+      document.getElementById('modalRegistrarRodada').classList.add('hidden');
+    }
+
+    function selecionarResultadoRodada(tipo) {
+      resultadoSelecionadoAoVivo = tipo;
+      document.querySelectorAll('.resultado-rodada-btn').forEach(b => b.classList.remove('ring-2', 'ring-white'));
+      document.getElementById(`btnResultado${tipo}`)?.classList.add('ring-2', 'ring-white');
+    }
+
+    function mostrarToast(mensagem) {
+      const toast = document.getElementById('toastConfirmacao');
+      document.getElementById('toastConfirmacaoTexto').textContent = mensagem;
+      toast.classList.remove('hidden');
+      toast.classList.add('flex');
+      clearTimeout(window._toastTimeout);
+      window._toastTimeout = setTimeout(() => {
+        toast.classList.add('hidden');
+        toast.classList.remove('flex');
+      }, 2200);
+    }
+
+    function salvarRodadaAoVivo() {
+      if (!resultadoSelecionadoAoVivo) {
+        alert('Selecione o resultado da rodada (Casa, Fora ou Empate).');
+        return;
+      }
+      const obs = document.getElementById('inputObsRodada').value.trim();
+
+      // Reutiliza a MESMA função/estrutura de dados do catalogador existente
+      adicionarPadrao(resultadoSelecionadoAoVivo, obs || undefined);
+
+      fecharModalRegistrarRodada();
+      mostrarToast(`✓ Rodada registrada: ${resultadoSelecionadoAoVivo.toUpperCase()}`);
+    }
+
+    // Atalho "💰 Banca": vai para o Painel e rola até o card da banca
+    function irParaBanca() {
+      mudarAba('painel');
+      setTimeout(() => {
+        document.getElementById('cardBancaAtual')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 150);
+    }
+
+    // 🤖 RADAR TÁTICO
+    function atualizarRadarTatico() {
+      const sinalDisplay = document.getElementById('radarSinalDisplay');
+      const probDisplay = document.getElementById('radarProbDisplay');
+      const justDisplay = document.getElementById('radarJustificativaDisplay');
+
+      if (estado.padroes.length < 3) {
+        sinalDisplay.textContent = "Aguardando mais saídas...";
+        probDisplay.textContent = "--%";
+        justDisplay.textContent = "Catalogue ao menos 3 rodadas para ativar a leitura probabilística.";
+        return;
+      }
+
+      const ultimos3 = estado.padroes.slice(-3).map(p => p.tipo);
+      let contSemEmpate = 0;
+      for (let i = estado.padroes.length - 1; i >= 0; i--) {
+        if (estado.padroes[i].tipo === 'Empate') break;
+        contSemEmpate++;
+      }
+
+      if (contSemEmpate >= 12) {
+        sinalDisplay.innerHTML = `<span class="text-appYellow">🟡 EMPATE 11X (PROTEÇÃO)</span>`;
+        probDisplay.textContent = "84%";
+        justDisplay.textContent = `Mesa há ${contSemEmpate} rodadas sem empate. Ative proteção tática de 10% da stake.`;
+        return;
+      }
+
+      if (ultimos3[0] === ultimos3[1] && ultimos3[1] === ultimos3[2] && ultimos3[0] !== 'Empate') {
+        const cor = ultimos3[0];
+        sinalDisplay.innerHTML = `<span class="${cor === 'Casa' ? 'text-blue-400' : 'text-rose-400'}">${cor === 'Casa' ? '🔵 CASA' : '🔴 FORA'} (SURFE)</span>`;
+        probDisplay.textContent = "78%";
+        justDisplay.textContent = `Sequência de 3x ${cor.toUpperCase()} confirmada. Siga a repetição até quebrar!`;
+        return;
+      }
+
+      if (ultimos3[0] !== ultimos3[1] && ultimos3[1] !== ultimos3[2] && ultimos3[0] === ultimos3[2] && !ultimos3.includes('Empate')) {
+        const proxima = ultimos3[0] === 'Casa' ? 'Fora' : 'Casa';
+        sinalDisplay.innerHTML = `<span class="${proxima === 'Casa' ? 'text-blue-400' : 'text-rose-400'}">${proxima === 'Casa' ? '🔵 CASA' : '🔴 FORA'} (XADREZ)</span>`;
+        probDisplay.textContent = "74%";
+        justDisplay.textContent = `Padrão Xadrez 1x1 ativo. Projeção de inversão para ${proxima.toUpperCase()}.`;
+        return;
+      }
+
+      let countC = 0, countF = 0;
+      estado.padroes.slice(-10).forEach(p => {
+        if (p.tipo === 'Casa') countC++;
+        if (p.tipo === 'Fora') countF++;
+      });
+      const ladoForte = countC >= countF ? 'Casa' : 'Fora';
+      const pct = Math.round((Math.max(countC, countF) / Math.max(1, countC + countF)) * 100);
+
+      sinalDisplay.innerHTML = `<span class="${ladoForte === 'Casa' ? 'text-blue-400' : 'text-rose-400'}">${ladoForte === 'Casa' ? '🔵 CASA' : '🔴 FORA'}</span>`;
+      probDisplay.textContent = `${pct}%`;
+      justDisplay.textContent = `Volume recente aponta maior incidência de ${ladoForte.toUpperCase()}.`;
+    }
+
+    function ajustarValorGale() {
+      const tipoGale = document.getElementById('selectGale').value;
+      const baseStake = (estado.bancaInicial * (estado.stakePercent / 100));
+      const input = document.getElementById('inputValor');
+
+      if (tipoGale === 'Base') input.value = baseStake.toFixed(2);
+      else if (tipoGale === 'Gale 1') input.value = (baseStake * 2).toFixed(2);
+      else if (tipoGale === 'Gale 2') input.value = (baseStake * 4).toFixed(2);
+      else if (tipoGale === 'Empate') input.value = (baseStake * 0.5).toFixed(2);
+    }
+
+    function getChaveDataHoje() {
+      const h = new Date();
+      return `${h.getFullYear()}-${String(h.getMonth() + 1).padStart(2, '0')}-${String(h.getDate()).padStart(2, '0')}`;
+    }
+
+    // 🎯 Lucro EXCLUSIVO do dia atual (Stop Win / Stop Loss diários)
+    function getLucroHoje() {
+      const hoje = getChaveDataHoje();
+      return Number(estado.historicoDiario?.[hoje] || 0);
+    }
+
+    // Identifica a sessão (manhã/tarde/noite) pelo horário atual
+    function getSessaoAtual() {
+      const hora = new Date().getHours();
+      if (hora >= 6 && hora < 12) return 'manha';
+      if (hora >= 12 && hora < 18) return 'tarde';
+      return 'noite';
+    }
+
+    // Soma o lucro real das entradas de HOJE para uma sessão específica
+    function getLucroSessaoHoje(sessao) {
+      const hoje = getChaveDataHoje();
+      const entradasHoje = estado.entradas.filter(e => e.dataChave === hoje);
+
+      return entradasHoje
+        .filter(e => {
+          const hora = parseInt((e.hora || '00:00').split(':')[0], 10);
+          if (sessao === 'manha') return hora >= 6 && hora < 12;
+          if (sessao === 'tarde') return hora >= 12 && hora < 18;
+          return hora >= 18 || hora < 6;
+        })
+        .reduce((total, e) => total + Number(e.lucro || 0), 0);
+    }
+
+    // 🕛 Detecta automaticamente a virada do dia e libera a trava/sessões antigas
+    function verificarViradaDoDia() {
+      const hoje = getChaveDataHoje();
+
+      if (estado.travaData && estado.travaData !== hoje) {
+        estado.travaData = null;
+        estado.travaManualDesativada = false;
+        salvarDados();
+      }
+
+      atualizarUI();
+    }
+
+    function registrarEntrada(isGreen) {
+      const valor = parseFloat(document.getElementById('inputValor').value);
+      if (!valor || valor <= 0) {
+        alert('Informe o valor da aposta.');
+        return;
+      }
+
+      const estrategia = document.getElementById('selectGale').value;
+      let lucroLiquido = isGreen ? (apostaSelecionada === 'Empate' ? valor * 11 : valor) : -valor;
+
+      if (isGreen) falar('Green confirmado!');
+      else falar('Red registrado.');
+
+      const novaEntrada = {
+        id: Date.now(),
+        humor: humorAtual,
+        dataChave: getChaveDataHoje(),
+        hora: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+        aposta: apostaSelecionada,
+        estrategia: estrategia,
+        valor: valor,
+        resultado: isGreen ? 'GREEN' : 'RED',
+        lucro: lucroLiquido
+      };
+
+      estado.entradas.unshift(novaEntrada);
+
+      const hojeKey = getChaveDataHoje();
+      estado.historicoDiario[hojeKey] = (estado.historicoDiario[hojeKey] || 0) + lucroLiquido;
+
+      adicionarPadrao(isGreen ? apostaSelecionada : (apostaSelecionada === 'Casa' ? 'Fora' : 'Casa'));
+      salvarDados();
+      document.getElementById('inputValor').value = '';
+    }
+
+    function removerEntrada(id) {
+      const entrada = estado.entradas.find(e => e.id === id);
+      if (entrada && entrada.dataChave) {
+        estado.historicoDiario[entrada.dataChave] = (estado.historicoDiario[entrada.dataChave] || 0) - entrada.lucro;
+      }
+      estado.entradas = estado.entradas.filter(e => e.id !== id);
+      salvarDados();
+    }
+
+    function destravarOperacoes() {
+      estado.travaManualDesativada = true;
+      document.getElementById('bannerTrava').classList.add('hidden');
+      document.getElementById('btnGreen').disabled = false;
+      document.getElementById('btnRed').disabled = false;
+      document.getElementById('containerNovaEntrada').classList.remove('opacity-50', 'pointer-events-none');
+      salvarDados();
+    }
+
+    function verificarTravas() {
+      const banner = document.getElementById('bannerTrava');
+      const icone = document.getElementById('iconeTrava');
+      const titulo = document.getElementById('tituloTrava');
+      const desc = document.getElementById('descTrava');
+      const containerEntrada = document.getElementById('containerNovaEntrada');
+      const btnG = document.getElementById('btnGreen');
+      const btnR = document.getElementById('btnRed');
+
+      const hoje = getChaveDataHoje();
+
+      // Uma trava de um dia anterior nunca pode continuar ativa hoje
+      if (estado.travaData && estado.travaData !== hoje) {
+        estado.travaData = null;
+      }
+
+      if (estado.travaManualDesativada) {
+        banner.classList.add('hidden');
+        containerEntrada.classList.remove('opacity-50', 'pointer-events-none');
+        btnG.disabled = false;
+        btnR.disabled = false;
+        return;
+      }
+
+      const lucroHoje = getLucroHoje();
+      const jaTravadoHoje = estado.travaData === hoje;
+
+      if (lucroHoje >= estado.stopWin && estado.stopWin > 0) {
+        if (!jaTravadoHoje) falar('Parabéns! Meta de Stop Win batida.');
+        estado.travaData = hoje;
+        banner.className = 'p-4 rounded-2xl border border-appGreen bg-emerald-950/80 text-appGreen shadow-2xl block space-y-2 animate-bounce';
+        icone.className = 'fa-solid fa-trophy text-appGreen text-2xl';
+        titulo.textContent = '🎯 META DE STOP WIN BATIDA!';
+        desc.textContent = `Você atingiu +R$ ${lucroHoje.toFixed(2)} hoje. Proteja o seu lucro e volte amanhã!`;
+        containerEntrada.classList.add('opacity-50', 'pointer-events-none');
+        btnG.disabled = true;
+        btnR.disabled = true;
+        return;
+      }
+
+      if (lucroHoje <= -estado.stopLoss && estado.stopLoss > 0) {
+        if (!jaTravadoHoje) falar('Stop Loss atingido.');
+        estado.travaData = hoje;
+        banner.className = 'p-4 rounded-2xl border border-appRed bg-rose-950/80 text-appRed shadow-2xl block space-y-2';
+        icone.className = 'fa-solid fa-hand text-appRed text-2xl';
+        titulo.textContent = '🛑 LIMITE DE STOP LOSS ATINGIDO!';
+        desc.textContent = `Atenção: Limite de perdas atingido hoje (-R$ ${Math.abs(lucroHoje).toFixed(2)}). Pare por hoje!`;
+        containerEntrada.classList.add('opacity-50', 'pointer-events-none');
+        btnG.disabled = true;
+        btnR.disabled = true;
+        return;
+      }
+
+      banner.classList.add('hidden');
+      containerEntrada.classList.remove('opacity-50', 'pointer-events-none');
+      btnG.disabled = false;
+      btnR.disabled = false;
+    }
+
+    // 🎯 Atualiza o estado visual (verde/pendente) das 3 sessões, sempre com base no dia atual
+    function atualizarSessoesDiarias() {
+      const metaSessao = estado.stopWin / 3;
+      const sessoes = [
+        { chave: 'manha', prefixo: 'sessaoManha' },
+        { chave: 'tarde', prefixo: 'sessaoTarde' },
+        { chave: 'noite', prefixo: 'sessaoNoite' }
+      ];
+
+      sessoes.forEach(({ chave, prefixo }) => {
+        const lucroSessao = getLucroSessaoHoje(chave);
+        const metaEl = document.getElementById(`${prefixo}Meta`);
+        const cardEl = document.getElementById(`${prefixo}Card`);
+        const statusEl = document.getElementById(`${prefixo}Status`);
+
+        if (metaEl) metaEl.textContent = `R$ ${metaSessao.toFixed(2)}`;
+
+        const bateu = metaSessao > 0 && lucroSessao >= metaSessao;
+
+        if (metaEl) {
+          metaEl.classList.toggle('text-green-num', !bateu);
+          metaEl.style.color = bateu ? '#00f59b' : '';
+        }
+
+        if (cardEl) {
+          if (bateu) {
+            cardEl.style.background = 'rgba(16, 185, 129, 0.14)';
+            cardEl.style.borderColor = '#10b981';
+          } else {
+            cardEl.style.background = 'rgba(0,0,0,0.3)';
+            cardEl.style.borderColor = 'var(--card-border)';
+          }
+        }
+
+        if (statusEl) {
+          statusEl.textContent = bateu ? '✓ META BATIDA' : 'Pendente';
+          statusEl.style.color = bateu ? '#10b981' : 'var(--text-muted)';
+        }
+      });
+    }
+
+    function initChart() {
+      const ctx = document.getElementById('graficoBanca').getContext('2d');
+      chartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['Início'],
+          datasets: [{
+            label: 'Banca (R$)',
+            data: [estado.bancaInicial],
+            borderColor: '#10b981',
+            backgroundColor: 'rgba(16, 185, 129, 0.12)',
+            borderWidth: 2.5,
+            tension: 0.35,
+            fill: true,
+            pointRadius: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { display: false },
+            y: { grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#8194b0', font: { size: 9 } } }
+          }
+        }
+      });
+    }
+
+    function atualizarGrafico(bancaAtual) {
+      if (!chartInstance) return;
+      let pontos = [estado.bancaInicial];
+      let labels = ['Início'];
+      let acumulado = estado.bancaInicial;
+
+      const entradasOrdem = [...estado.entradas].reverse();
+      entradasOrdem.forEach((e, idx) => {
+        acumulado += e.lucro;
+        pontos.push(acumulado);
+        labels.push(`#${idx + 1}`);
+      });
+
+      chartInstance.data.labels = labels;
+      chartInstance.data.datasets[0].data = pontos;
+      chartInstance.update();
+    }
+
+    function limparHistorico() {
+      if (confirm('Deseja realmente limpar todas as entradas?')) {
+        estado.entradas = [];
+        estado.padroes = [];
+        estado.historicoDiario = {};
+        salvarDados();
+      }
+    }
+
+    function atualizarUI() {
+      let totalLucro = 0, greens = 0, reds = 0, volumeTotal = 0, maxStreak = 0, currentStreak = 0;
+      let humorGreens = { Focado: 0, Confiante: 0, Ansioso: 0, Cansado: 0 };
+      let humorTotals = { Focado: 0, Confiante: 0, Ansioso: 0, Cansado: 0 };
+
+      estado.entradas.forEach(e => {
+        totalLucro += e.lucro;
+        volumeTotal += e.valor;
+        const h = e.humor || 'Focado';
+        humorTotals[h] = (humorTotals[h] || 0) + 1;
+
+        if (e.resultado === 'GREEN') {
+          greens++;
+          currentStreak++;
+          if (currentStreak > maxStreak) maxStreak = currentStreak;
+          humorGreens[h] = (humorGreens[h] || 0) + 1;
+        } else {
+          reds++;
+          currentStreak = 0;
+        }
+      });
+
+      const totalEntradas = greens + reds;
+      const winRate = totalEntradas > 0 ? ((greens / totalEntradas) * 100).toFixed(1) : "0.0";
+      const bancaAtual = estado.bancaInicial + totalLucro;
+      const stakeRecomendada = (bancaAtual * (estado.stakePercent / 100));
+
+      const roi = volumeTotal > 0 ? ((totalLucro / volumeTotal) * 100).toFixed(1) : "0.0";
+      const lucroMedio = totalEntradas > 0 ? (totalLucro / totalEntradas).toFixed(2) : "0.00";
+
+      // Display dos Números Verdes
+      document.getElementById('bancaAtualDisplay').textContent = `R$ ${bancaAtual.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+      document.getElementById('bancaInicialSubDisplay').textContent = `R$ ${estado.bancaInicial.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+      document.getElementById('stakeRecomendadaDisplay').textContent = `Auto: R$ ${stakeRecomendada.toFixed(2)}`;
+
+      const badge = document.getElementById('lucroBadge');
+      const percLucro = estado.bancaInicial > 0 ? ((totalLucro / estado.bancaInicial) * 100).toFixed(1) : "0.0";
+
+      if (totalLucro > 0) {
+        badge.className = 'flex items-center space-x-1 px-3 py-1 rounded-full text-xs font-bold bg-[#062c24] border border-appGreen/40 text-appGreen shadow';
+        document.getElementById('lucroTextoBadge').textContent = `+R$ ${totalLucro.toFixed(2)} (+${percLucro}%)`;
+      } else if (totalLucro < 0) {
+        badge.className = 'flex items-center space-x-1 px-3 py-1 rounded-full text-xs font-bold bg-[#2a0f14] border border-appRed/40 text-appRed shadow';
+        document.getElementById('lucroTextoBadge').textContent = `-R$ ${Math.abs(totalLucro).toFixed(2)} (${percLucro}%)`;
+      } else {
+        badge.className = 'flex items-center space-x-1 px-3 py-1 rounded-full text-xs font-bold border text-gray-300';
+        document.getElementById('lucroTextoBadge').textContent = `+R$ 0,00 (+0.0%)`;
+      }
+
+      // Stop Win e Stop Loss Displays
+      const valorMetaWin = estado.bancaInicial + estado.stopWin;
+      const percWin = ((estado.stopWin / estado.bancaInicial) * 100).toFixed(0);
+      document.getElementById('stopWinDisplay').textContent = `R$ ${valorMetaWin.toLocaleString('pt-BR', { minimumFractionDigits: 2 })} (+${percWin}%)`;
+
+      const valorStopLoss = estado.bancaInicial - estado.stopLoss;
+      const percLoss = ((estado.stopLoss / estado.bancaInicial) * 100).toFixed(0);
+      document.getElementById('stopLossDisplay').textContent = `R$ ${valorStopLoss.toLocaleString('pt-BR', { minimumFractionDigits: 2 })} (-${percLoss}%)`;
+
+      // 4 Cards Grade (Números em Verde)
+      document.getElementById('winRateDisplay').textContent = `${winRate}%`;
+      document.getElementById('totalGreensDisplay').textContent = `${greens} Greens`;
+      document.getElementById('totalRedsDisplay').textContent = `${reds} Reds`;
+      document.getElementById('totalRodadasDisplay').textContent = totalEntradas;
+
+      // Divisor de Meta em 3 Sessões (calculado somente com o dia atual)
+      atualizarSessoesDiarias();
+
+      // Métricas de ROI
+      document.getElementById('roiPercentDisplay').textContent = `${roi >= 0 ? '+' : ''}${roi}%`;
+      document.getElementById('maxStreakDisplay').textContent = `${maxStreak} Seguidos`;
+      document.getElementById('volumeTotalDisplay').textContent = `R$ ${volumeTotal.toFixed(2)}`;
+      document.getElementById('lucroMedioDisplay').textContent = `${lucroMedio >= 0 ? '+' : ''}R$ ${lucroMedio}`;
+
+      // Estatísticas Psicológicas
+      const statsBox = document.getElementById('statsHumorBox');
+      if (statsBox) {
+        statsBox.innerHTML = Object.keys(humorTotals).map(k => {
+          const tot = humorTotals[k] || 0;
+          const grn = humorGreens[k] || 0;
+          const wr = tot > 0 ? Math.round((grn / tot) * 100) : 0;
+          return `
+            <div class="p-2 rounded-xl border flex justify-between" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+              <span style="color: var(--text-muted);">${k}:</span>
+              <b class="text-green-num font-bold">${wr}% <span class="text-[8px] text-gray-400">(${tot} ops)</span></b>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Barras de Progresso (Stop Win / Stop Loss são diários — usam somente o lucro de HOJE)
+      const lucroHojeBarras = getLucroHoje();
+
+      const barraWin = document.getElementById('metaProgressBar');
+      if (lucroHojeBarras > 0 && estado.stopWin > 0) {
+        const progresso = Math.min(100, (lucroHojeBarras / estado.stopWin) * 100);
+        barraWin.style.width = `${progresso}%`;
+      } else {
+        barraWin.style.width = '0%';
+      }
+
+      const barraLoss = document.getElementById('lossProgressBar');
+      if (lucroHojeBarras < 0 && estado.stopLoss > 0) {
+        const progresso = Math.min(100, (Math.abs(lucroHojeBarras) / estado.stopLoss) * 100);
+        barraLoss.style.width = `${progresso}%`;
+      } else {
+        barraLoss.style.width = '0%';
+      }
+
+      // Catalogador de Bolinhas
+      const containerBolinhas = document.getElementById('containerBolinhas');
+      if (estado.padroes.length === 0) {
+        containerBolinhas.innerHTML = `<span class="text-[11px] py-1" style="color: var(--text-muted);">Nenhuma rodada catalogada.</span>`;
+      } else {
+        containerBolinhas.innerHTML = estado.padroes.map(p => {
+          let cor = p.tipo === 'Casa' ? 'bg-blue-600 text-white' : (p.tipo === 'Fora' ? 'bg-rose-600 text-white' : 'bg-amber-400 text-black font-black');
+          let letra = p.tipo === 'Casa' ? 'C' : (p.tipo === 'Fora' ? 'F' : 'E');
+          return `
+            <div class="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center font-black text-[10px] ${cor} shadow">
+              ${letra}
+            </div>
+          `;
+        }).join('');
+      }
+
+      atualizarRadarTatico();
+      verificarTravas();
+      atualizarGrafico(bancaAtual);
+      atualizarCentralAoVivo();
+
+      const lista = document.getElementById('listaEntradas');
+      if (estado.entradas.length === 0) {
+        lista.innerHTML = `<div class="text-center py-6 text-xs" style="color: var(--text-muted);">Nenhuma entrada registrada.</div>`;
+        return;
+      }
+
+      lista.innerHTML = estado.entradas.map(e => `
+        <div class="flex items-center justify-between p-2.5 rounded-xl border text-xs" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+          <div class="flex items-center space-x-2">
+            <span class="w-2 h-2 rounded-full ${e.resultado === 'GREEN' ? 'bg-appGreen' : 'bg-appRed'}"></span>
+            <div>
+              <p class="font-bold text-white">${e.aposta} <span class="font-normal" style="color: var(--text-muted);">(${e.estrategia})</span></p>
+              <p class="text-[9px]" style="color: var(--text-muted);">${e.hora} • R$ ${e.valor.toFixed(2)} • [${e.humor || '🎯'}]</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span class="font-extrabold ${e.resultado === 'GREEN' ? 'text-green-num' : 'text-appRed'}">
+              ${e.lucro > 0 ? '+' : ''}R$ ${e.lucro.toFixed(2)}
+            </span>
+            <button onclick="removerEntrada(${e.id})" class="text-gray-400 hover:text-appRed p-1">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Comprovante VIP
+    function gerarCardVip() {
+      let totalLucro = 0, greens = 0, reds = 0;
+      estado.entradas.forEach(e => {
+        totalLucro += e.lucro;
+        if (e.resultado === 'GREEN') greens++;
+        else reds++;
+      });
+      const total = greens + reds;
+      const winRate = total > 0 ? ((greens / total) * 100).toFixed(0) : 0;
+      const perc = estado.bancaInicial > 0 ? ((totalLucro / estado.bancaInicial) * 100).toFixed(1) : 0;
+
+      document.getElementById('vipDataDisplay').textContent = new Date().toLocaleDateString('pt-BR');
+      document.getElementById('vipLucroDisplay').textContent = `${totalLucro >= 0 ? '+' : ''}R$ ${totalLucro.toFixed(2)} (${perc}%)`;
+      document.getElementById('vipLucroDisplay').className = totalLucro >= 0 ? 'text-2xl font-black text-green-num' : 'text-2xl font-black text-appRed';
+      document.getElementById('vipWinRateDisplay').textContent = `${winRate}%`;
+      document.getElementById('vipPlacarDisplay').textContent = `${greens}G / ${reds}R`;
+
+      document.getElementById('modalCardVip').classList.remove('hidden');
+    }
+
+    function fecharCardVip() { document.getElementById('modalCardVip').classList.add('hidden'); }
+
+    function copiarComprovante() {
+      let totalLucro = 0, greens = 0, reds = 0;
+      estado.entradas.forEach(e => {
+        totalLucro += e.lucro;
+        if (e.resultado === 'GREEN') greens++;
+        else reds++;
+      });
+      const total = greens + reds;
+      const winRate = total > 0 ? ((greens / total) * 100).toFixed(0) : 0;
+      const dataHoje = new Date().toLocaleDateString('pt-BR');
+
+      const texto = `🔥 *RELATÓRIO VIP - FUTEBOL STUDIO PRO* 🔥\n📅 Data: ${dataHoje}\n💰 Lucro Líquido: ${totalLucro >= 0 ? '+' : ''}R$ ${totalLucro.toFixed(2)}\n🎯 Assertividade: ${winRate}%\n✅ Placar: ${greens} Greens / ${reds} Reds\n🛡️ Gestão: 100% Blindada\n\n_Gerado por Futebol Studio Master Suite_`;
+
+      navigator.clipboard.writeText(texto).then(() => {
+        alert('✅ Relatório VIP copiado! Agora basta colar no seu WhatsApp ou Telegram!');
+        fecharCardVip();
+      });
+    }
+
+    // Backup Completo
+    function exportarBackupCompleto() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(estado, null, 2));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `fs_backup_completo_${Date.now()}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+    }
+
+    function restaurarBackupCompleto(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const dados = JSON.parse(e.target.result);
+          if (dados && dados.bancaInicial !== undefined) {
+            estado = dados;
+            salvarDados();
+            alert('🎉 Backup restaurado com sucesso!');
+          } else {
+            alert('Arquivo de backup inválido.');
+          }
+        } catch (err) {
+          alert('Erro ao ler o arquivo.');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    // Metas 30 Dias
+    function renderizarMetas30Dias() {
+      const container = document.getElementById('listaDias30');
+      const tipoBadge = document.getElementById('tipoCalculoMetaBadge');
+      const progressoBadge = document.getElementById('progressoMetasBadge');
+      const barra30D = document.getElementById('barraProgresso30D');
+      const bancaInicialDisplay = document.getElementById('bancaInicial30DDisplay');
+      const bancaFinalDisplay = document.getElementById('bancaFinalEstimadaDisplay');
+
+      bancaInicialDisplay.textContent = `R$ ${estado.bancaInicial.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+
+      const mCfg = estado.metas30 || { tipo: 'porcentagem', percentual: 5, valorFixo: 50 };
+      const isPercent = mCfg.tipo === 'porcentagem';
+
+      tipoBadge.textContent = isPercent ? `Juros Compostos (${mCfg.percentual}%/dia)` : `Meta Fixa (R$ ${mCfg.valorFixo}/dia)`;
+
+      let bancaAcumulada = estado.bancaInicial;
+      let html = '';
+      let metasBatidasCount = 0;
+
+      const chavesHistorico = Object.keys(estado.historicoDiario).sort();
+
+      for (let dia = 1; dia <= 30; dia++) {
+        let metaDiaValor = isPercent ? (bancaAcumulada * (mCfg.percentual / 100)) : (parseFloat(mCfg.valorFixo) || 50);
+        const bancaFinalDia = bancaAcumulada + metaDiaValor;
+
+        let statusTag = `<span class="text-[9px] px-2 py-0.5 rounded-full border" style="background: rgba(0,0,0,0.3); border-color: var(--card-border); color: var(--text-muted);">Pendente</span>`;
+
+        if (chavesHistorico[dia - 1]) {
+          const lucroRealDia = estado.historicoDiario[chavesHistorico[dia - 1]];
+          if (lucroRealDia >= metaDiaValor) {
+            metasBatidasCount++;
+            statusTag = `<span class="text-[9px] text-green-num bg-[#062c24] px-2 py-0.5 rounded-full border border-appGreen/40 font-bold">✓ Meta Batida</span>`;
+          } else if (lucroRealDia > 0) {
+            statusTag = `<span class="text-[9px] text-appYellow bg-[#281c06] px-2 py-0.5 rounded-full border border-appYellow/40 font-bold">Parcial (+R$ ${lucroRealDia.toFixed(0)})</span>`;
+          } else {
+            statusTag = `<span class="text-[9px] text-appRed bg-[#2a0f14] px-2 py-0.5 rounded-full border border-appRed/40 font-bold">Red (R$ ${lucroRealDia.toFixed(0)})</span>`;
+          }
+        }
+
+        html += `
+          <div class="p-3 border rounded-xl flex items-center justify-between text-xs transition hover:border-appYellow/40" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <div class="flex items-center space-x-2.5">
+              <span class="w-6 h-6 rounded-lg flex items-center justify-center font-bold text-appYellow text-[11px] border" style="background: var(--card-bg); border-color: var(--card-border);">
+                ${dia}
+              </span>
+              <div>
+                <p class="font-bold text-white">Meta: <span class="text-green-num font-extrabold">+R$ ${metaDiaValor.toFixed(2)}</span></p>
+                <p class="text-[10px]" style="color: var(--text-muted);">Banca Esperada: R$ ${bancaFinalDia.toFixed(2)}</p>
+              </div>
+            </div>
+            <div>${statusTag}</div>
+          </div>
+        `;
+
+        bancaAcumulada = bancaFinalDia;
+      }
+
+      container.innerHTML = html;
+      bancaFinalDisplay.textContent = `R$ ${bancaAcumulada.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
+      progressoBadge.textContent = `${metasBatidasCount}/30 Dias Batidos`;
+      barra30D.style.width = `${(metasBatidasCount / 30) * 100}%`;
+    }
+
+    function abrirConfigMetas30() {
+      const mCfg = estado.metas30 || { tipo: 'porcentagem', percentual: 5, valorFixo: 50 };
+      document.getElementById('cfgTipoMeta30').value = mCfg.tipo;
+      document.getElementById('cfgPercentMeta30').value = mCfg.percentual || 5;
+      document.getElementById('cfgValorFixoMeta30').value = mCfg.valorFixo || 50;
+      toggleTipoMetaInputs();
+      document.getElementById('modalConfigMetas30').classList.remove('hidden');
+    }
+
+    function fecharConfigMetas30() { document.getElementById('modalConfigMetas30').classList.add('hidden'); }
+
+    function toggleTipoMetaInputs() {
+      const tipo = document.getElementById('cfgTipoMeta30').value;
+      if (tipo === 'porcentagem') {
+        document.getElementById('boxPercentMeta').classList.remove('hidden');
+        document.getElementById('boxFixaMeta').classList.add('hidden');
+      } else {
+        document.getElementById('boxPercentMeta').classList.add('hidden');
+        document.getElementById('boxFixaMeta').classList.remove('hidden');
+      }
+    }
+
+    function salvarConfigMetas30() {
+      const tipo = document.getElementById('cfgTipoMeta30').value;
+      const percent = parseFloat(document.getElementById('cfgPercentMeta30').value) || 5;
+      const fixa = parseFloat(document.getElementById('cfgValorFixoMeta30').value) || 50;
+
+      estado.metas30 = { tipo: tipo, percentual: percent, valorFixo: fixa };
+      salvarDados();
+      fecharConfigMetas30();
+    }
+
+    // Calendário
+    let mesVisualizacao = new Date().getMonth();
+    let anoVisualizacao = new Date().getFullYear();
+
+    function navegarMes(delta) {
+      mesVisualizacao += delta;
+      if (mesVisualizacao < 0) {
+        mesVisualizacao = 11;
+        anoVisualizacao--;
+      } else if (mesVisualizacao > 11) {
+        mesVisualizacao = 0;
+        anoVisualizacao++;
+      }
+      renderizarMesCalendario();
+    }
+
+    function renderizarMesCalendario() {
+      const grid = document.getElementById('gridCalendarioMes');
+      const displayMesAno = document.getElementById('displayMesAno');
+      const lucroMesDisplay = document.getElementById('lucroMesSelecionado');
+
+      const dataObj = new Date(anoVisualizacao, mesVisualizacao, 1);
+      displayMesAno.textContent = `${dataObj.toLocaleString('pt-BR', { month: 'long' }).toUpperCase()} ${anoVisualizacao}`;
+
+      const totalDias = new Date(anoVisualizacao, mesVisualizacao + 1, 0).getDate();
+      let html = '', lucroMes = 0, diasPos = 0, diasNeg = 0;
+      const hoje = new Date();
+
+      for (let dia = 1; dia <= totalDias; dia++) {
+        const chave = `${anoVisualizacao}-${String(mesVisualizacao + 1).padStart(2, '0')}-${String(dia).padStart(2, '0')}`;
+        const lucroDia = estado.historicoDiario[chave];
+
+        let bg = 'border';
+        let statusTexto = '';
+
+        if (lucroDia !== undefined && lucroDia !== 0) {
+          lucroMes += lucroDia;
+          if (lucroDia > 0) {
+            diasPos++;
+            bg = 'bg-[#062c24] text-appGreen border-appGreen/50 font-bold';
+            statusTexto = `+${lucroDia.toFixed(0)}`;
+          } else {
+            diasNeg++;
+            bg = 'bg-[#2a0f14] text-appRed border-appRed/50 font-bold';
+            statusTexto = `${lucroDia.toFixed(0)}`;
+          }
+        } else {
+          bg = 'border text-gray-500';
+        }
+
+        const isHoje = (dia === hoje.getDate() && mesVisualizacao === hoje.getMonth() && anoVisualizacao === hoje.getFullYear()) ? 'ring-1 ring-appYellow' : '';
+        html += `
+          <div class="p-1 rounded-xl flex flex-col items-center justify-center text-[10px] min-h-[34px] ${bg} ${isHoje}" style="background: rgba(0,0,0,0.3); border-color: var(--card-border);">
+            <span>${dia}</span>
+            <span class="text-[7px] tracking-tighter">${statusTexto}</span>
+          </div>
+        `;
+      }
+
+      grid.innerHTML = html;
+      lucroMesDisplay.textContent = `Total: ${lucroMes >= 0 ? '+' : ''}R$ ${lucroMes.toFixed(2)}`;
+      document.getElementById('diasPositivosCount').textContent = diasPos;
+      document.getElementById('diasNegativosCount').textContent = diasNeg;
+      const resTotal = document.getElementById('resultadoMesTotal');
+      resTotal.textContent = `${lucroMes >= 0 ? '+' : ''}R$ ${lucroMes.toFixed(2)}`;
+      resTotal.className = lucroMes >= 0 ? 'text-green-num text-sm font-black' : 'text-appRed text-sm font-black';
+    }
+
+    // Disparidade
+    function calcularDisparidade() {
+      const vC = parseInt(document.getElementById('calcCartaCasa').value);
+      const vF = parseInt(document.getElementById('calcCartaFora').value);
+      const res = document.getElementById('calcResultado');
+
+      const diff = Math.abs(vC - vF);
+      let vencedor = vC > vF ? 'Casa (🔵)' : (vF > vC ? 'Fora (🔴)' : 'Empate (🟡)');
+      let recomendacao = '';
+
+      if (diff === 0) {
+        recomendacao = 'EMPATE: Multiplicador 11x pago. Tendência de sustentação da cor dominante no sapato.';
+      } else if (diff >= 8) {
+        recomendacao = `DISPARIDADE MÁXIMA (${diff} pts): Vitória dominante de ${vencedor}. Forte probabilidade de repetição na rodada subsequente.`;
+      } else if (diff <= 2) {
+        recomendacao = `DISPARIDADE MÍNIMA (${diff} pt): Instabilidade de mesa. Forte sinal de início de Padrão Xadrez 1x1.`;
+      } else {
+        recomendacao = `DISPARIDADE MÉDIA (${diff} pts): Fluxo operacional padrão de mesa.`;
+      }
+
+      res.innerHTML = `
+        <div class="flex justify-between items-center text-white font-bold pb-1 border-b" style="border-color: var(--card-border);">
+          <span>Vencedor: ${vencedor}</span>
+          <span class="text-green-num font-extrabold">Diferença: ${diff} pts</span>
+        </div>
+        <p class="text-[11px] pt-1 leading-relaxed" style="color: var(--text-muted);">${recomendacao}</p>
+      `;
+    }
+
+    // Modal Ajustes Gerais
+    function abrirConfigGeral() {
+      document.getElementById('cfgBancaInicial').value = estado.bancaInicial;
+      document.getElementById('cfgStakePercent').value = estado.stakePercent || 2;
+      document.getElementById('cfgStopWin').value = estado.stopWin;
+      document.getElementById('cfgStopLoss').value = estado.stopLoss;
+      document.getElementById('modalConfigGeral').classList.remove('hidden');
+    }
+
+    function fecharConfigGeral() { document.getElementById('modalConfigGeral').classList.add('hidden'); }
+
+    function salvarConfigGeral() {
+      estado.bancaInicial = parseFloat(document.getElementById('cfgBancaInicial').value) || 1000;
+      estado.stakePercent = parseFloat(document.getElementById('cfgStakePercent').value) || 2;
+      estado.stopWin = parseFloat(document.getElementById('cfgStopWin').value) || 150;
+      estado.stopLoss = parseFloat(document.getElementById('cfgStopLoss').value) || 100;
+      estado.travaManualDesativada = false;
+      salvarDados();
+      fecharConfigGeral();
+    }
+
+    window.onload = carregarDados;
+  </script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
